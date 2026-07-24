@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "journal": {
+      "type": "journal-grid",
+      "settings": {}
+    }
+  },
+  "order": ["journal"]
+}

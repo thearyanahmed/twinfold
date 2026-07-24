@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "article": {
+      "type": "journal-article",
+      "settings": {}
+    }
+  },
+  "order": ["article"]
+}

@@ -1,0 +1,78 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  .jnl{--paper:oklch(0.988 0.005 95);--ink:oklch(0.24 0.01 260);--muted:oklch(0.5 0.01 250);--sub:oklch(0.52 0.01 250);--accent:oklch(0.55 0.045 150);--accent-hover:oklch(0.45 0.05 150);--rule:oklch(0.86 0.006 120);--img-base:oklch(0.94 0.005 120);background:var(--paper);}
+  .jnl *{box-sizing:border-box;}
+  .jnl a{color:inherit;text-decoration:none;}
+  .jnl-wrap{max-width:1560px;margin:0 auto;padding:64px 56px 88px;}
+  .jnl-mast{margin-bottom:44px;}
+  .jnl-mast h1{font-family:'Newsreader',serif;font-weight:400;font-size:46px;letter-spacing:-0.01em;color:var(--ink);line-height:1;margin:0;}
+  .jnl-grid{display:grid !important;grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:40px 28px !important;}
+  .jnl-card{display:flex !important;flex-direction:column;}
+  .jnl-thumb{aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--img-base);width:100%;}
+  .jnl-thumb img{width:100% !important;height:100% !important;object-fit:cover !important;display:block !important;transition:transform 0.4s ease;}
+  .jnl-fill{width:100%;height:100%;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,0.028) 0 11px,rgba(0,0,0,0.05) 11px 22px);display:flex;align-items:center;justify-content:center;transition:transform 0.4s ease;}
+  .jnl-label{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:0.03em;color:oklch(0.42 0.01 250);background:rgba(255,255,255,0.72);padding:5px 9px;border-radius:3px;text-align:center;}
+  .jnl-kicker{font-size:10.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--accent);margin:16px 0 7px;min-height:13px;}
+  .jnl-title{font-family:'Newsreader',serif;font-weight:500;font-size:19px;line-height:1.22;letter-spacing:-0.005em;color:var(--ink);min-height:46px;margin:0;transition:color 0.2s ease;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .jnl-blurb{font-size:13.5px;line-height:1.5;color:var(--muted);margin:8px 0 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .jnl-card:hover .jnl-title{color:var(--accent-hover);}
+  .jnl-card:hover .jnl-thumb img,.jnl-card:hover .jnl-fill{transform:scale(1.015);}
+  .jnl-pager{display:flex;justify-content:center;gap:8px;margin-top:56px;font-size:13px;}
+  .jnl-pager a,.jnl-pager span{padding:8px 13px;border:1px solid var(--rule);border-radius:6px;color:var(--sub);}
+  .jnl-pager span[aria-current]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  @media (max-width:1200px){.jnl-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}}
+  @media (max-width:720px){.jnl-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}.jnl-wrap{padding:40px 24px 64px;}.jnl-mast h1{font-size:38px;}}
+</style>
+
+<div class="jnl">
+  <div class="jnl-wrap">
+    <header class="jnl-mast">
+      <h1>{{ blog.title | default: 'Journal' }}</h1>
+    </header>
+
+    {%- paginate blog.articles by 20 -%}
+    <div class="jnl-grid">
+      {%- for article in blog.articles -%}
+        {%- assign kick = article.metafields.custom.category -%}
+        {%- if kick == blank -%}{%- assign kick = article.tags | first -%}{%- endif -%}
+        {%- assign blurb = article.excerpt -%}
+        {%- if blurb == blank -%}{%- assign blurb = article.metafields.global.description_tag -%}{%- endif -%}
+        {%- if blurb == blank -%}{%- assign blurb = article.content -%}{%- endif -%}
+        <a class="jnl-card" href="{{ article.url }}">
+          <div class="jnl-thumb">
+            {%- if article.image -%}
+              <img src="{{ article.image | image_url: width: 700 }}" alt="{{ article.title | escape }}" loading="lazy">
+            {%- else -%}
+              <div class="jnl-fill"><span class="jnl-label">{{ article.title | truncatewords: 4, '' | escape }}</span></div>
+            {%- endif -%}
+          </div>
+          <div class="jnl-kicker">{{ kick }}</div>
+          <h3 class="jnl-title">{{ article.title }}</h3>
+          <p class="jnl-blurb">{{ blurb | strip_html | truncatewords: 28 }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+    <nav class="jnl-pager">
+      {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">&larr;</a>{%- endif -%}
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- else -%}<span {% if part.title == paginate.current_page %}aria-current="page"{% endif %}>{{ part.title }}</span>{%- endif -%}
+      {%- endfor -%}
+      {%- if paginate.next -%}<a href="{{ paginate.next.url }}">&rarr;</a>{%- endif -%}
+    </nav>
+    {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Journal grid",
+  "tag": "section",
+  "settings": [],
+  "presets": [ { "name": "Journal grid" } ]
+}
+{% endschema %}

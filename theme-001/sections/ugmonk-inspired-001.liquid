@@ -1,0 +1,331 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+  .ug001 *{box-sizing:border-box;}
+  .ug001 a{color:#B0714E;text-decoration:none;}
+  .ug001 a:hover{color:#8F5533;}
+  .ug001 button{font-family:inherit;}
+  .ug001 .tf-scroll::-webkit-scrollbar{height:0;width:0;}
+  .ug001 .tf-scroll{scrollbar-width:none;}
+  .ug001 .tf-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;background:#EDE7DB;color:#A89C86;font-size:10px;letter-spacing:0.06em;padding:4px;line-height:1.3;}
+  .ug001 .tf-img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ug001 .tf-story{max-width:640px;margin-left:auto;margin-right:auto;}
+  .ug001 .tf-story h3{font-family:'Spectral',serif;font-size:18px;font-weight:600;line-height:1.3;margin:26px 0 8px;color:#2A2621;}
+  .ug001 .tf-story h3:first-child{margin-top:0;}
+  .ug001 .tf-story p{font-size:14px;line-height:1.7;color:#5E574A;margin:0 0 15px;}
+  .ug001 .tf-story p:last-child{margin-bottom:0;}
+  @media (min-width:900px){
+    .ug001 .tf-app{max-width:1180px !important;}
+    .ug001 .tf-header{padding:20px 44px !important;}
+    .ug001 .tf-menu{display:none !important;}
+    .ug001 .tf-nav{display:flex !important;}
+    .ug001 .tf-buy{display:flex !important;gap:60px;align-items:flex-start;padding:28px 44px 10px;}
+    .ug001 .tf-media{flex:1;min-width:0;position:sticky;top:24px;}
+    .ug001 .tf-info{width:404px;flex:none;}
+    .ug001 .tf-info > section{padding-left:0 !important;padding-right:0 !important;}
+    .ug001 .tf-wide{max-width:900px;margin-left:auto;margin-right:auto;}
+    .ug001 .tf-values-row{flex-direction:row !important;gap:36px !important;}
+    .ug001 .tf-values-row > div{flex:1;}
+    .ug001 .tf-related-grid{grid-template-columns:repeat(4,1fr) !important;}
+    .ug001 .tf-reviews-grid{display:grid !important;grid-template-columns:1fr 1fr;gap:16px;}
+    .ug001 .tf-gallery{display:flex !important;gap:14px;align-items:flex-start;}
+    .ug001 .tf-thumbs{flex-direction:column !important;overflow:visible !important;padding:0 !important;order:1;flex:none;}
+    .ug001 .tf-thumbs button{width:66px !important;height:66px !important;}
+    .ug001 .tf-hero{flex:1;min-width:0;order:0;}
+  }
+</style>
+
+{%- assign selvar = product.selected_or_first_available_variant -%}
+
+<div class="ug001" style="background:#FFFFFF;width:100%;display:flex;justify-content:center;padding:0;">
+<div class="tf-app" style="width:100%;max-width:468px;background:#FFFFFF;color:#2A2621;font-family:'Hanken Grotesk',system-ui,sans-serif;overflow:hidden;">
+
+  <div class="tf-buy"><div class="tf-media">
+  <!-- Image gallery -->
+  <section class="tf-gallery" style="padding:0;">
+    <div class="tf-hero" style="width:100%;aspect-ratio:1/1;background:#EDE7DB;">
+      {%- if product.featured_image -%}
+        <img id="ugHero" class="tf-img" src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.featured_image.alt | escape }}">
+      {%- else -%}
+        <div class="tf-ph" id="ugHero">{{ product.title }}</div>
+      {%- endif -%}
+    </div>
+    {%- if product.images.size > 1 -%}
+    <div class="tf-scroll tf-thumbs" style="display:flex;gap:8px;padding:12px 18px;overflow-x:auto;">
+      {%- for image in product.images limit: 6 -%}
+        <button class="ugThumb" data-full="{{ image | image_url: width: 900 }}" style="position:relative;width:58px;height:58px;flex:none;border-radius:8px;overflow:hidden;border:none;padding:0;cursor:pointer;background:#EDE7DB;">
+          <img class="tf-img" src="{{ image | image_url: width: 140 }}" alt="{{ image.alt | escape }}">
+          <span class="ugThumbRing" style="position:absolute;inset:0;border-radius:8px;pointer-events:none;border:2px solid {% if forloop.first %}#B0714E{% else %}transparent{% endif %};"></span>
+        </button>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </section>
+  </div><div class="tf-info">
+
+  <!-- Product info -->
+  <section style="padding:6px 18px 0;">
+    <h1 style="font-family:'Spectral',serif;font-size:27px;font-weight:600;line-height:1.15;margin:0 0 6px;">{{ product.title }}</h1>
+    <div style="display:flex;align-items:center;gap:10px;margin:0 0 8px;">
+      <span id="ugHeaderPrice" style="font-size:19px;font-weight:600;">{{ selvar.price | money }}</span>
+    </div>
+  </section>
+
+  {%- comment -%} Color option, only if the product actually has one {%- endcomment -%}
+  {%- assign coloropt = null -%}
+  {%- for opt in product.options_with_values -%}
+    {%- assign dn = opt.name | downcase -%}
+    {%- if dn == 'color' or dn == 'colour' -%}{%- assign coloropt = opt -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if coloropt -%}
+  <section style="padding:22px 18px 0;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
+      <span style="font-size:13px;font-weight:600;letter-spacing:0.02em;">{{ coloropt.name }}</span>
+      <span id="ugColorName" style="font-size:12.5px;color:#7C7566;">{{ coloropt.selected_value }}</span>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      {%- for val in coloropt.values -%}
+        <button class="ugColor" data-name="{{ val | escape }}" aria-label="{{ val | escape }}" style="position:relative;padding:6px 12px;border-radius:20px;border:1px solid #E4DECE;background:#FBF8F1;cursor:pointer;font-size:12.5px;">
+          {{ val }}
+          <span class="ugColorRing" style="position:absolute;inset:-1px;border-radius:20px;pointer-events:none;border:2px solid {% if val == coloropt.selected_value %}#B0714E{% else %}transparent{% endif %};"></span>
+        </button>
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endif -%}
+
+  <!-- Available variants -->
+  {%- unless product.has_only_default_variant -%}
+  <section style="padding:20px 18px 0;">
+    <div style="font-size:13px;font-weight:600;margin-bottom:11px;">Select {% if product.options.size == 1 %}{{ product.options.first }}{% else %}Option{% endif %}</div>
+    <div style="display:flex;flex-direction:column;gap:11px;">
+      {%- for variant in product.variants -%}
+        <button type="button" class="ugKit" data-id="{{ variant.id }}" data-price="{{ variant.price | money }}" data-available="{{ variant.available }}" style="position:relative;display:flex;gap:12px;width:100%;text-align:left;background:#FBF8F1;border:1px solid #E4DECE;border-radius:12px;padding:12px 13px;cursor:pointer;align-items:center;color:inherit;margin:0;">
+          <div style="width:56px;height:56px;flex:none;border-radius:8px;overflow:hidden;">
+            {%- if variant.image -%}
+              <img class="tf-img" src="{{ variant.image | image_url: width: 130 }}" alt="{{ variant.image.alt | escape }}">
+            {%- elsif product.featured_image -%}
+              <img class="tf-img" src="{{ product.featured_image | image_url: width: 130 }}" alt="{{ product.title | escape }}">
+            {%- else -%}
+              <div class="tf-ph">{{ variant.title }}</div>
+            {%- endif -%}
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-family:'Spectral',serif;font-size:15px;font-weight:600;">{{ variant.title }}</div>
+            <div style="font-size:12px;color:{% if variant.available %}#7C7566{% else %}#B04E4E{% endif %};margin-top:2px;">{% if variant.available %}In stock{% else %}Sold out{% endif %}</div>
+          </div>
+          <span style="font-size:14px;font-weight:600;white-space:nowrap;">{{ variant.price | money }}</span>
+          <div class="ugKitRing" style="position:absolute;inset:-1px;border-radius:12px;pointer-events:none;border:2px solid {% if variant.id == selvar.id %}#B0714E{% else %}transparent{% endif %};"></div>
+        </button>
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endunless -%}
+
+  <!-- Add to cart -->
+  <section style="padding:22px 18px 0;">
+    <form method="post" action="/cart/add" id="ugForm">
+      <input type="hidden" name="id" id="ugVariantId" value="{{ selvar.id }}">
+      <button type="submit" id="ugAtc" {% unless product.available %}disabled{% endunless %} style="width:100%;background:{% if product.available %}#B0714E{% else %}#B7AE9C{% endif %};color:#F8F4EC;border:none;border-radius:12px;padding:17px;font-size:15px;font-weight:600;letter-spacing:0.01em;cursor:{% if product.available %}pointer{% else %}not-allowed{% endif %};">{% if product.available %}Add to cart — {{ selvar.price | money }}{% else %}Sold out{% endif %}</button>
+    </form>
+  </section>
+
+  <!-- Trust badges -->
+  <section style="display:flex;justify-content:space-between;gap:8px;padding:20px 20px 24px;">
+    <div style="flex:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:7px;">
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2.4c-2.7 0-4.9 2.1-4.9 4.8 0 3.5 4.9 10.4 4.9 10.4s4.9-6.9 4.9-10.4c0-2.7-2.2-4.8-4.9-4.8z" fill="none" stroke="#B0714E" stroke-width="1.2"></path><circle cx="10" cy="7.3" r="1.8" fill="#B0714E"></circle></svg>
+      <span style="font-size:10.5px;color:#6E6757;line-height:1.3;">Made in the UK &amp; EU</span>
+    </div>
+    <div style="flex:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:7px;">
+      <svg width="20" height="20" viewBox="0 0 20 20"><rect x="4.5" y="9" width="11" height="8" rx="1" fill="none" stroke="#B0714E" stroke-width="1.2"></rect><path d="M7 9V6.6a3 3 0 0 1 6 0V9" fill="none" stroke="#B0714E" stroke-width="1.2"></path></svg>
+      <span style="font-size:10.5px;color:#6E6757;line-height:1.3;">Secure payments</span>
+    </div>
+    <div style="flex:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:7px;">
+      <svg width="20" height="20" viewBox="0 0 20 20"><rect x="2.5" y="5.5" width="15" height="10" rx="1.5" fill="none" stroke="#B0714E" stroke-width="1.2"></rect><line x1="2.5" y1="8.5" x2="17.5" y2="8.5" stroke="#B0714E" stroke-width="1.2"></line><line x1="6.5" y1="12.2" x2="11.5" y2="12.2" stroke="#B0714E" stroke-width="1.2"></line></svg>
+      <span style="font-size:10.5px;color:#6E6757;line-height:1.3;">Pay in installments</span>
+    </div>
+  </section>
+  </div></div>
+
+  <!-- Accordions -->
+  <section class="tf-wide" style="padding:4px 18px;">
+    <div style="max-width:640px;margin:0 auto;">
+    {%- if product.description != blank -%}
+    <div>
+      <button class="ugAcc" data-target="ugPanelDetails" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;padding:18px 0;cursor:pointer;color:inherit;">
+        <span style="font-family:'Spectral',serif;font-size:16px;font-weight:600;">Details</span>
+        <span class="ugAccInd" style="font-size:19px;color:#B0714E;font-weight:400;">–</span>
+      </button>
+      <div id="ugPanelDetails">
+        <div style="font-size:13.5px;color:#5E574A;line-height:1.6;margin:0 0 18px;">{{ product.description }}</div>
+      </div>
+    </div>
+    {%- endif -%}
+    <div>
+      <button class="ugAcc" data-target="ugPanelShipping" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;padding:18px 0;cursor:pointer;color:inherit;">
+        <span style="font-family:'Spectral',serif;font-size:16px;font-weight:600;">Shipping &amp; Returns</span>
+        <span class="ugAccInd" style="font-size:19px;color:#B0714E;font-weight:400;">+</span>
+      </button>
+      <div id="ugPanelShipping" style="display:none;">
+        <div class="tf-story" style="padding:2px 0 18px;">
+          <h3>Shipping</h3>
+          <p>Everything is made and dispatched from the UK, usually within a few working days. You'll get tracking the moment your parcel is on its way, and it all arrives in plastic-free, recyclable packaging.</p>
+          <h3>Returns</h3>
+          <p>Changed your mind? You have 14 days from delivery to request a return. Items should come back unused and in their original packaging, with proof of purchase. Once it's back with us, we'll refund you to your original payment method.</p>
+          <h3>Damaged or wrong item</h3>
+          <p>If anything arrives faulty, damaged, or not what you ordered, get in touch straight away and we'll put it right — no fuss.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Editorial story (per-product, from metafield custom.story) -->
+  {%- assign story = product.metafields.custom.story -%}
+  {%- if story != blank -%}
+  <section class="tf-wide" style="padding:30px 18px 8px;">
+    <div class="tf-story">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#B0714E;margin-bottom:16px;">The Story</div>
+      {{ story.value }}
+    </div>
+  </section>
+  {%- endif -%}
+
+  <!-- Brand values band -->
+  <section class="tf-wide" style="padding:34px 18px;text-align:center;">
+    <h2 style="font-family:'Spectral',serif;font-size:21px;font-weight:600;margin:0 0 26px;">The {{ shop.name }} Way</h2>
+    <div class="tf-values-row" style="display:flex;flex-direction:column;gap:26px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:9px;">
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="9.5" fill="none" stroke="#B0714E" stroke-width="1.2"></circle></svg>
+        <div style="font-family:'Spectral',serif;font-size:15px;font-weight:600;">Made to last</div>
+        <p style="font-size:12.5px;color:#6E6757;line-height:1.5;max-width:240px;margin:0;">We build for a decade of daily use, then let you refill instead of replace.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:9px;">
+        <svg width="26" height="26" viewBox="0 0 26 26"><rect x="6" y="6" width="14" height="14" fill="none" stroke="#B0714E" stroke-width="1.2"></rect></svg>
+        <div style="font-family:'Spectral',serif;font-size:15px;font-weight:600;">Considered by design</div>
+        <p style="font-size:12.5px;color:#6E6757;line-height:1.5;max-width:240px;margin:0;">Every detail earns its place — nothing extra, nothing missing.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:9px;">
+        <svg width="26" height="26" viewBox="0 0 26 26"><rect x="8" y="5" width="10" height="10" transform="rotate(45 13 10)" fill="none" stroke="#B0714E" stroke-width="1.2"></rect></svg>
+        <div style="font-family:'Spectral',serif;font-size:15px;font-weight:600;">Kinder to the planet</div>
+        <p style="font-size:12.5px;color:#6E6757;line-height:1.5;max-width:240px;margin:0;">Certified paper, plastic-free packaging, carbon-neutral shipping.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related products -->
+  {%- assign coll = product.collections.first -%}
+  {%- if coll -%}
+  <section class="tf-wide" style="padding:30px 18px 48px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;">
+      <h2 style="font-family:'Spectral',serif;font-size:19px;font-weight:600;margin:0;">You May Also Like</h2>
+      <a href="{{ coll.url }}" style="font-size:12.5px;font-weight:600;">See all →</a>
+    </div>
+    <div class="tf-related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      {%- assign shown = 0 -%}
+      {%- for p in coll.products limit: 10 -%}
+        {%- if p.id != product.id and shown < 4 -%}
+        <a href="{{ p.url }}" style="display:block;color:inherit;">
+          <div style="width:100%;aspect-ratio:1/1;background:#EDE7DB;border-radius:12px;overflow:hidden;">
+            {%- if p.featured_image -%}<img class="tf-img" src="{{ p.featured_image | image_url: width: 500 }}" alt="{{ p.title | escape }}">{%- else -%}<div class="tf-ph">{{ p.title }}</div>{%- endif -%}
+          </div>
+          <div style="font-size:13px;font-weight:600;margin-top:9px;line-height:1.3;">{{ p.title }}</div>
+          <div style="font-size:12.5px;color:#7C7566;margin-top:2px;">{{ p.price | money }}</div>
+        </a>
+        {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endif -%}
+
+</div>
+</div>
+
+<script>
+(function(){
+  var root = document.currentScript.previousElementSibling;
+  if(!root || !root.classList.contains('ug001')){ root = document.querySelector('.ug001'); }
+  if(!root) return;
+
+  var accent = '#B0714E';
+
+  // Gallery thumbnails
+  var hero = root.querySelector('#ugHero');
+  root.querySelectorAll('.ugThumb').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var full = btn.getAttribute('data-full');
+      if(hero && hero.tagName === 'IMG' && full) hero.src = full;
+      root.querySelectorAll('.ugThumb .ugThumbRing').forEach(function(r){ r.style.border = '2px solid transparent'; });
+      var ring = btn.querySelector('.ugThumbRing');
+      if(ring) ring.style.border = '2px solid ' + accent;
+    });
+  });
+
+  // Color labels (visual only)
+  var colorName = root.querySelector('#ugColorName');
+  root.querySelectorAll('.ugColor').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(colorName) colorName.textContent = btn.getAttribute('data-name');
+      root.querySelectorAll('.ugColor .ugColorRing').forEach(function(r){ r.style.border = '2px solid transparent'; });
+      var ring = btn.querySelector('.ugColorRing');
+      if(ring) ring.style.border = '2px solid ' + accent;
+    });
+  });
+
+  // Variant selector -> sets cart id + updates price/button
+  var headerPrice = root.querySelector('#ugHeaderPrice');
+  var atc = root.querySelector('#ugAtc');
+  var variantInput = root.querySelector('#ugVariantId');
+  root.querySelectorAll('.ugKit').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var price = btn.getAttribute('data-price');
+      var id = btn.getAttribute('data-id');
+      var available = btn.getAttribute('data-available') === 'true';
+      if(variantInput) variantInput.value = id;
+      if(headerPrice) headerPrice.textContent = price;
+      if(atc){
+        if(available){
+          atc.textContent = 'Add to cart — ' + price;
+          atc.disabled = false;
+          atc.style.background = accent;
+          atc.style.cursor = 'pointer';
+        } else {
+          atc.textContent = 'Sold out';
+          atc.disabled = true;
+          atc.style.background = '#B7AE9C';
+          atc.style.cursor = 'not-allowed';
+        }
+      }
+      root.querySelectorAll('.ugKit .ugKitRing').forEach(function(r){ r.style.border = '2px solid transparent'; });
+      var ring = btn.querySelector('.ugKitRing');
+      if(ring) ring.style.border = '2px solid ' + accent;
+    });
+  });
+
+  // Accordions
+  root.querySelectorAll('.ugAcc').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var panel = root.querySelector('#' + btn.getAttribute('data-target'));
+      var ind = btn.querySelector('.ugAccInd');
+      if(!panel) return;
+      var isOpen = panel.style.display !== 'none';
+      panel.style.display = isOpen ? 'none' : '';
+      if(ind) ind.textContent = isOpen ? '+' : '–';
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Ugmonk Inspired 001",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    { "name": "Ugmonk Inspired 001" }
+  ]
+}
+{% endschema %}

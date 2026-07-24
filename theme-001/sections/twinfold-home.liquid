@@ -1,0 +1,316 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  .tf-home{
+    --paper:oklch(0.988 0.005 95);--ink:oklch(0.2 0.01 260);--ink-2:oklch(0.24 0.01 260);
+    --body:oklch(0.36 0.008 260);--muted:oklch(0.45 0.01 250);--meta:oklch(0.5 0.01 250);
+    --accent:oklch(0.55 0.045 150);--accent-link:oklch(0.42 0.05 150);--accent-hover:oklch(0.45 0.05 150);
+    --btn:oklch(0.24 0.02 150);--btn-hover:oklch(0.34 0.03 150);
+    --band:oklch(0.965 0.014 145);--kit-bg:oklch(0.968 0.013 145);--kit-border:oklch(0.91 0.018 145);
+    --line:oklch(0.82 0.006 120);--img-base:oklch(0.94 0.005 120);
+    background:var(--paper);color:var(--ink-2);font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  }
+  .tf-home *{box-sizing:border-box;}
+  .tf-home a{color:inherit;text-decoration:none;}
+  .tf-home h1,.tf-home h2,.tf-home h3,.tf-home h4{font-family:'Newsreader',serif;font-weight:500;letter-spacing:-0.01em;margin:0;}
+  .tf-home p{margin:0;}
+  .tf-home .tf-navlink{transition:color .2s ease;}
+  .tf-home .tf-navlink:hover{color:var(--accent-hover);}
+  .tf-home .tf-kicker{font-family:'Hanken Grotesk';font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+  .tf-home .tf-wrap{max-width:1280px;margin:0 auto;padding-left:56px;padding-right:56px;}
+  .tf-home .tf-imgfill{width:100%;height:100%;}
+  .tf-home .tf-imgfill img{width:100% !important;height:100% !important;object-fit:cover !important;display:block !important;transition:transform .4s ease;}
+  .tf-home .tf-ph{width:100%;height:100%;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.028) 0 12px,rgba(0,0,0,.05) 12px 24px);display:flex;align-items:center;justify-content:center;}
+  .tf-home .tf-ph span{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:oklch(0.42 0.01 250);background:rgba(255,255,255,.72);padding:5px 9px;border-radius:3px;}
+
+  .tf-home .tf-hero{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;max-width:1440px;margin:0 auto;}
+  .tf-home .tf-hero-copy{display:flex;flex-direction:column;justify-content:center;padding:96px 72px;}
+  .tf-home .tf-hero h1{font-size:60px;font-weight:500;line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin:22px 0 26px;}
+  .tf-home .tf-hero-sub{font-family:'Newsreader';font-size:20px;line-height:1.55;color:var(--body);max-width:452px;margin-bottom:36px;}
+  .tf-home .tf-btns{display:flex;gap:14px;flex-wrap:wrap;}
+  .tf-home .tf-btn-dark{font-size:15px;font-weight:500;color:oklch(0.98 0 0);background:var(--btn);padding:14px 26px;border-radius:100px;border:none;cursor:pointer;font-family:'Hanken Grotesk';transition:background .2s ease;}
+  .tf-home .tf-btn-dark:hover{background:var(--btn-hover);}
+  .tf-home .tf-btn-line{font-size:15px;font-weight:500;color:oklch(0.28 0.01 260);border:1px solid var(--line);padding:14px 26px;border-radius:100px;transition:background .2s ease;}
+  .tf-home .tf-btn-line:hover{background:oklch(0.955 0.012 145);}
+  .tf-home .tf-hero-img{min-height:620px;overflow:hidden;}
+
+  .tf-home .tf-intro{max-width:640px;margin:0 auto;padding:96px 56px 8px;text-align:center;}
+  .tf-home .tf-intro p{font-family:'Newsreader';font-size:23px;line-height:1.5;color:oklch(0.3 0.01 260);margin-top:18px;}
+
+  .tf-home .tf-chapter{padding-top:56px;padding-bottom:56px;}
+  .tf-home .tf-ch-head{display:flex;align-items:flex-start;gap:28px;margin-bottom:40px;padding-top:36px;}
+  .tf-home .tf-ch-head h2{font-size:32px;margin:10px 0;}
+  .tf-home .tf-ch-head p{font-family:'Newsreader';font-size:18px;line-height:1.5;color:oklch(0.4 0.008 260);max-width:560px;}
+  .tf-home .tf-ch-cta{font-size:14px;color:var(--meta);white-space:nowrap;margin-top:8px;}
+  .tf-home .tf-grid4{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:40px 28px !important;}
+  .tf-home .tf-prod{display:flex;flex-direction:column;}
+  .tf-home .tf-prod .tf-thumb{aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--img-base);}
+  .tf-home .tf-prod:hover .tf-imgfill img{transform:scale(1.02);}
+  .tf-home .tf-prod-name{font-size:17px;line-height:1.25;margin:15px 0 6px;transition:color .2s ease;color:var(--ink-2);}
+  .tf-home .tf-prod:hover .tf-prod-name{color:var(--accent-hover);}
+  .tf-home .tf-price{font-size:14px;color:var(--muted);}
+
+  .tf-home .tf-seasonal{padding-top:88px;padding-bottom:24px;}
+  .tf-home .tf-seasonal .tf-row{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+  .tf-home .tf-seasonal h2{font-size:34px;line-height:1.15;margin:18px 0;}
+  .tf-home .tf-seasonal p{font-family:'Newsreader';font-size:18px;line-height:1.55;color:oklch(0.4 0.008 260);max-width:480px;margin-bottom:26px;}
+  .tf-home .tf-season-link{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;color:var(--accent-link);}
+  .tf-home .tf-season-img{aspect-ratio:5/4;border-radius:8px;overflow:hidden;}
+
+  .tf-home .tf-kits{padding-top:88px;padding-bottom:24px;}
+  .tf-home .tf-kits-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px;}
+  .tf-home .tf-kits-head h2{font-size:32px;margin:10px 0 12px;}
+  .tf-home .tf-kits-head p{font-family:'Newsreader';font-size:18px;line-height:1.5;color:oklch(0.4 0.008 260);max-width:600px;}
+  .tf-home .tf-grid3{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:28px !important;}
+  .tf-home .tf-kit{display:flex;flex-direction:column;background:var(--kit-bg);border:1px solid var(--kit-border);border-radius:12px;overflow:hidden;}
+  .tf-home .tf-kit .tf-kthumb{aspect-ratio:16/11;overflow:hidden;position:relative;}
+  .tf-home .tf-save{position:absolute;top:12px;left:12px;font-family:'Hanken Grotesk';font-size:11px;font-weight:600;color:oklch(0.98 0 0);background:oklch(0.34 0.03 150);padding:4px 11px;border-radius:100px;}
+  .tf-home .tf-kit-body{display:flex;flex-direction:column;flex:1;padding:20px 20px 22px;}
+  .tf-home .tf-kit-body h3{font-size:20px;line-height:1.2;margin-bottom:14px;color:var(--ink-2);transition:color .2s ease;}
+  .tf-home .tf-kit:hover .tf-kit-body h3{color:var(--accent-hover);}
+  .tf-home .tf-kit-items{display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
+  .tf-home .tf-kit-item{display:flex;align-items:center;gap:9px;font-size:13.5px;color:oklch(0.42 0.01 250);}
+  .tf-home .tf-kit-dot{width:4px;height:4px;border-radius:50%;background:oklch(0.65 0.045 150);flex:none;}
+  .tf-home .tf-kit-price{display:flex;align-items:baseline;gap:10px;margin-top:auto;}
+  .tf-home .tf-kit-price .tf-now{font-family:'Newsreader';font-size:22px;font-weight:500;color:var(--ink-2);}
+  .tf-home .tf-kit-price .tf-was{font-size:14px;color:oklch(0.6 0.01 250);text-decoration:line-through;}
+
+  .tf-home .tf-band{background:var(--band);margin-top:56px;padding:88px 56px;}
+  .tf-home .tf-band-inner{max-width:1080px;margin:0 auto;}
+  .tf-home .tf-band-inner > p{font-family:'Newsreader';font-weight:400;font-size:32px;line-height:1.35;color:oklch(0.26 0.01 260);max-width:800px;margin-bottom:56px;}
+  .tf-home .tf-values{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  .tf-home .tf-values h4{font-size:20px;margin-bottom:8px;}
+  .tf-home .tf-values p{font-size:14px;line-height:1.55;color:var(--muted);}
+
+  .tf-home .tf-journal{padding-top:88px;padding-bottom:40px;}
+  .tf-home .tf-journal-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;}
+  .tf-home .tf-journal-head h2{font-size:32px;}
+  .tf-home .tf-jgrid{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:36px 28px !important;}
+  .tf-home .tf-jcard{display:flex;flex-direction:column;}
+  .tf-home .tf-jcard .tf-jthumb{aspect-ratio:16/10;border-radius:4px;overflow:hidden;background:var(--img-base);}
+  .tf-home .tf-jkicker{margin:16px 0 7px;}
+  .tf-home .tf-jtitle{font-size:19px;line-height:1.22;transition:color .2s ease;color:var(--ink-2);}
+  .tf-home .tf-jcard:hover .tf-jtitle{color:var(--accent-hover);}
+  .tf-home .tf-jcard:hover .tf-imgfill img{transform:scale(1.02);}
+
+  .tf-home .tf-news{max-width:760px;margin:0 auto;padding:96px 56px;text-align:center;}
+  .tf-home .tf-news h2{font-size:34px;margin-bottom:14px;}
+  .tf-home .tf-news > p{font-family:'Newsreader';font-size:18px;line-height:1.5;color:var(--meta);max-width:460px;margin:0 auto 30px;}
+  .tf-home .tf-news-form{display:flex;gap:10px;max-width:440px;margin:0 auto;}
+  .tf-home .tf-news-form input{flex:1;font-family:'Hanken Grotesk';font-size:15px;color:oklch(0.28 0.01 260);background:oklch(0.985 0.004 95);border:1px solid var(--line);border-radius:100px;padding:13px 20px;outline:none;}
+  .tf-home .tf-news-note{font-size:13px;color:var(--accent-link);margin-top:14px;}
+
+  @media(max-width:1000px){
+    .tf-home .tf-hero{grid-template-columns:1fr;}
+    .tf-home .tf-hero-copy{padding:64px 32px;}
+    .tf-home .tf-hero-img{min-height:360px;order:-1;}
+    .tf-home .tf-grid4{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+    .tf-home .tf-grid3{grid-template-columns:1fr !important;}
+    .tf-home .tf-seasonal .tf-row{grid-template-columns:1fr;}
+    .tf-home .tf-values{grid-template-columns:1fr;}
+    .tf-home .tf-jgrid{grid-template-columns:1fr !important;}
+    .tf-home .tf-wrap{padding-left:24px;padding-right:24px;}
+  }
+</style>
+
+{%- liquid
+  assign shop_link = section.settings.hero_shop_link | default: routes.all_products_collection_url
+  assign journal_link = section.settings.hero_journal_link | default: blogs.journal.url
+  assign seasonal_link = section.settings.seasonal_link | default: routes.all_products_collection_url
+  assign ch_handles = 'desk-paper|brew-and-sip|the-calm-corner' | split: '|'
+  assign ch_titles = 'Think in paper|Then, make coffee|Where you sit matters' | split: '|'
+  assign ch_blurbs = 'Before the inbox, before anything loads — a notebook, a good pen, and a first clear thought put down by hand.|The kettle, the slow pour, a mug that feels right in two hands. Ten unhurried minutes that are only yours.|A desk by the window, a little green nearby, candlelight to close the day. The calm corner that makes the thinking — and the coffee — that much better.' | split: '|'
+-%}
+
+<div class="tf-home">
+
+  <section class="tf-hero">
+    <div class="tf-hero-copy">
+      <div class="tf-kicker">Considered objects for a calm, analog life</div>
+      <h1>Small things,<br>made to keep.</h1>
+      <p class="tf-hero-sub">A UK shop for a calmer, more analog daily life — the considered objects that help you think, make and rest without a screen in your hand. A few small rituals, done well.</p>
+      <div class="tf-btns">
+        <a class="tf-btn-dark" href="{{ shop_link }}">Shop the day</a>
+        <a class="tf-btn-line" href="{{ journal_link }}">Read the Journal</a>
+      </div>
+    </div>
+    <div class="tf-hero-img" style="background-color:oklch(0.9 0.03 150)">
+      {%- if section.settings.hero_image != blank -%}
+        <div class="tf-imgfill"><img src="{{ section.settings.hero_image | image_url: width: 1200 }}" alt="{{ section.settings.hero_image.alt | escape }}"></div>
+      {%- else -%}
+        <div class="tf-ph"><span>styled interior — hero image</span></div>
+      {%- endif -%}
+    </div>
+  </section>
+
+  <section class="tf-intro">
+    <div class="tf-kicker" style="letter-spacing:.16em">A morning, in objects</div>
+    <p>Twinfold is organized like a day. A few small rituals, done well — scroll from the top and shop your way through it.</p>
+  </section>
+
+  <div class="tf-wrap">
+    {%- for handle in ch_handles -%}
+      {%- assign coll = collections[handle] -%}
+      {%- if coll != blank and coll.products.size > 0 -%}
+      <section class="tf-chapter">
+        <div class="tf-ch-head">
+          <div style="flex:1">
+            <div class="tf-kicker">{{ coll.title }}</div>
+            <h2>{{ ch_titles[forloop.index0] }}</h2>
+            <p>{{ ch_blurbs[forloop.index0] }}</p>
+          </div>
+          <a class="tf-ch-cta tf-navlink" href="{{ coll.url }}">View all &rarr;</a>
+        </div>
+        <div class="tf-grid4">
+          {%- for product in coll.products limit: 4 -%}
+          <a class="tf-prod" href="{{ product.url }}">
+            <div class="tf-thumb">
+              {%- if product.featured_image -%}
+                <div class="tf-imgfill"><img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title | escape }}" loading="lazy"></div>
+              {%- else -%}<div class="tf-ph"><span>{{ product.title | truncatewords: 3, '' | escape }}</span></div>{%- endif -%}
+            </div>
+            <h3 class="tf-prod-name">{{ product.title }}</h3>
+            <span class="tf-price">{{ product.price | money }}</span>
+          </a>
+          {%- endfor -%}
+        </div>
+      </section>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <section class="tf-seasonal tf-wrap">
+    <div class="tf-row">
+      <div>
+        <div class="tf-kicker" style="letter-spacing:.16em">In rhythm with the season</div>
+        <h2>A small seasonal edit, then gently retired</h2>
+        <p>Twinfold follows the year as well as the day. Now and then a handful of pieces gather for a moment — a New Term desk reset in late summer, a quiet corner for the darker months, a considered gift when the occasion calls. Never a sale-bin; just the right few things at the right time.</p>
+        <a class="tf-season-link tf-navlink" href="{{ seasonal_link }}">See what&rsquo;s in season <span>&rarr;</span></a>
+      </div>
+      <div class="tf-season-img" style="background-color:oklch(0.9 0.025 70)">
+        {%- if section.settings.seasonal_image != blank -%}
+          <div class="tf-imgfill"><img src="{{ section.settings.seasonal_image | image_url: width: 900 }}" alt="{{ section.settings.seasonal_image.alt | escape }}"></div>
+        {%- else -%}<div class="tf-ph"><span>seasonal edit — styled scene</span></div>{%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  {%- assign kitsC = collections['kits'] -%}
+  {%- if kitsC != blank and kitsC.products.size > 0 -%}
+  <section class="tf-kits tf-wrap">
+    <div class="tf-kits-head">
+      <div>
+        <div class="tf-kicker">Kits — a ritual, gathered</div>
+        <h2>The whole ritual, handed to you</h2>
+        <p>A few pieces that belong together, gathered into one considered set — offered a little under the price of buying each apart, and packed by hand.</p>
+      </div>
+      <a class="tf-navlink" href="{{ kitsC.url }}" style="font-size:14px;color:var(--meta);white-space:nowrap">All kits &rarr;</a>
+    </div>
+    <div class="tf-grid3">
+      {%- for product in kitsC.products limit: 3 -%}
+        {%- assign kk = '' -%}
+        {%- for c in product.collections -%}
+          {%- if c.handle == 'desk-paper' or c.handle == 'brew-and-sip' or c.handle == 'the-calm-corner' -%}
+            {%- if kk == '' -%}{%- assign kk = c.title -%}{%- else -%}{%- assign kk = kk | append: ' · ' | append: c.title -%}{%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        <a class="tf-kit tf-prod" href="{{ product.url }}">
+          <div class="tf-kthumb">
+            {%- if product.featured_image -%}
+              <div class="tf-imgfill"><img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.title | escape }}" loading="lazy"></div>
+            {%- else -%}<div class="tf-ph"><span>{{ product.title | escape }}</span></div>{%- endif -%}
+            {%- if product.compare_at_price > product.price -%}
+              {%- assign save = product.compare_at_price | minus: product.price -%}
+              <span class="tf-save">Save {{ save | money }}</span>
+            {%- endif -%}
+          </div>
+          <div class="tf-kit-body">
+            {%- if kk != '' -%}<div class="tf-kicker" style="margin-bottom:8px">{{ kk }}</div>{%- endif -%}
+            <h3>{{ product.title }}</h3>
+            {%- if product.metafields.custom.kit_items -%}
+            <div class="tf-kit-items">
+              {%- for it in product.metafields.custom.kit_items.value -%}
+                <div class="tf-kit-item"><span class="tf-kit-dot"></span>{{ it }}</div>
+              {%- endfor -%}
+            </div>
+            {%- endif -%}
+            <div class="tf-kit-price">
+              <span class="tf-now">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}<span class="tf-was">{{ product.compare_at_price | money }}</span>{%- endif -%}
+            </div>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endif -%}
+
+  <section class="tf-band">
+    <div class="tf-band-inner">
+      <p>A good life isn&rsquo;t built from more apps and more noise. It&rsquo;s built from a few small rituals done well — and the objects those rituals need. Nothing extra, nothing that pings you.</p>
+      <div class="tf-values">
+        <div><h4>Less, not more</h4><p>For people who&rsquo;d rather own one lasting object than five disposable ones — and who are quietly getting their attention back from their phones.</p></div>
+        <div><h4>Made to keep</h4><p>Solid materials that get better with use, and that you can repair rather than replace. Nothing designed to be binned in January.</p></div>
+        <div><h4>A point of view</h4><p>Not a random catalogue of homeware. Every object earns its place in one story about slow, screen-free living.</p></div>
+      </div>
+    </div>
+  </section>
+
+  {%- assign jblog = blogs['journal'] -%}
+  {%- if jblog != blank and jblog.articles_count > 0 -%}
+  <section class="tf-journal tf-wrap">
+    <div class="tf-journal-head">
+      <h2>From the Journal</h2>
+      <a class="tf-navlink" href="{{ jblog.url }}" style="font-size:14px;color:var(--meta)">All articles &rarr;</a>
+    </div>
+    <div class="tf-jgrid">
+      {%- for article in jblog.articles limit: 3 -%}
+        {%- assign jk = article.metafields.custom.category -%}
+        {%- if jk == blank -%}{%- assign jk = article.tags | first -%}{%- endif -%}
+        <a class="tf-jcard" href="{{ article.url }}">
+          <div class="tf-jthumb">
+            {%- if article.image -%}
+              <div class="tf-imgfill"><img src="{{ article.image | image_url: width: 700 }}" alt="{{ article.title | escape }}" loading="lazy"></div>
+            {%- else -%}<div class="tf-ph"><span>{{ article.title | truncatewords: 4, '' | escape }}</span></div>{%- endif -%}
+          </div>
+          {%- if jk != blank -%}<div class="tf-jkicker tf-kicker">{{ jk }}</div>{%- endif -%}
+          <h3 class="tf-jtitle">{{ article.title }}</h3>
+        </a>
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endif -%}
+
+  <section class="tf-news">
+    <h2>Stay connected</h2>
+    <p>A quiet note now and then — new arrivals, small guides, and the odd word from the Journal. No noise.</p>
+    {%- form 'customer' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="tf-news-form">
+        <input type="email" name="contact[email]" placeholder="you@email.com" required>
+        <button type="submit" name="commit" class="tf-btn-dark">Subscribe</button>
+      </div>
+      {%- if form.posted_successfully? -%}<p class="tf-news-note">Thank you — you&rsquo;re on the list.</p>{%- endif -%}
+    {%- endform -%}
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Twinfold home",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "url", "id": "hero_shop_link", "label": "‘Shop the day’ link" },
+    { "type": "url", "id": "hero_journal_link", "label": "‘Read the Journal’ link" },
+    { "type": "header", "content": "Seasonal edit" },
+    { "type": "image_picker", "id": "seasonal_image", "label": "Seasonal image" },
+    { "type": "url", "id": "seasonal_link", "label": "Seasonal link (e.g. New Term)" }
+  ],
+  "presets": [ { "name": "Twinfold home" } ]
+}
+{% endschema %}

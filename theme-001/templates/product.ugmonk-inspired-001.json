@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "ugmonk-inspired-001",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

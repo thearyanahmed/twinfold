@@ -1,0 +1,147 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  .tf-jart{
+    --paper:oklch(0.988 0.005 95);--ink:oklch(0.2 0.01 260);--ink-2:oklch(0.24 0.01 260);
+    --body:oklch(0.3 0.008 260);--muted:oklch(0.5 0.01 250);--meta:oklch(0.52 0.01 250);
+    --accent:oklch(0.55 0.045 150);--accent-link:oklch(0.42 0.05 150);--accent-hover:oklch(0.45 0.05 150);
+    --quote-bar:oklch(0.65 0.05 150);--quote-bg:oklch(0.965 0.012 145);--tag-border:oklch(0.85 0.03 150);--img-base:oklch(0.94 0.005 120);
+    background:var(--paper);color:var(--ink-2);font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  }
+  .tf-jart *{box-sizing:border-box;}
+  .tf-jart a{color:inherit;text-decoration:none;}
+
+  .tf-jart-article{max-width:720px;margin:0 auto;padding:64px 24px 40px;}
+  .tf-jart-back{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);margin-bottom:36px;}
+  .tf-jart-back:hover{color:var(--accent-hover);}
+  .tf-jart-kicker{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
+  .tf-jart h1{font-family:'Newsreader',serif;font-weight:500;font-size:46px;line-height:1.12;letter-spacing:-0.015em;color:var(--ink);margin:0 0 22px;}
+  .tf-jart-meta{display:flex;align-items:center;flex-wrap:wrap;gap:14px;font-size:13.5px;color:var(--meta);padding-bottom:12px;}
+  .tf-jart-dot{width:3px;height:3px;border-radius:50%;background:oklch(0.7 0.01 250);}
+
+  .tf-jart figure{margin:40px 0 8px;}
+  .tf-jart-hero{aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:var(--img-base);width:100%;}
+  .tf-jart-hero img{width:100% !important;height:100% !important;object-fit:cover !important;display:block !important;}
+  .tf-jart figcaption{font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center;}
+
+  .tf-jart-body{margin-top:36px;}
+  .tf-jart-body p{font-family:'Newsreader',serif;font-size:19px;line-height:1.62;color:var(--body);margin:0 0 24px;}
+  .tf-jart-body > p:first-of-type{font-size:23px;line-height:1.5;color:oklch(0.26 0.01 260);margin-bottom:32px;}
+  .tf-jart-body h2{font-family:'Newsreader',serif;font-weight:500;font-size:27px;letter-spacing:-0.01em;margin:48px 0 16px;color:oklch(0.22 0.01 260);}
+  .tf-jart-body h3{font-family:'Newsreader',serif;font-weight:500;font-size:22px;letter-spacing:-0.01em;margin:36px 0 14px;color:oklch(0.22 0.01 260);}
+  .tf-jart-body ul,.tf-jart-body ol{font-family:'Newsreader',serif;font-size:19px;line-height:1.62;color:var(--body);margin:0 0 24px;padding-left:24px;}
+  .tf-jart-body li{margin-bottom:8px;}
+  .tf-jart-body p > a{color:var(--accent-link);font-weight:500;}
+  .tf-jart-body p > a:hover{color:var(--accent-hover);}
+  .tf-jart-body blockquote{margin:40px 0 8px;padding:28px 32px;border-left:2px solid var(--quote-bar);background:var(--quote-bg);}
+  .tf-jart-body blockquote p{font-family:'Newsreader',serif;font-style:italic;font-size:22px;line-height:1.45;color:oklch(0.3 0.01 260);margin:0;}
+  .tf-jart-body img{border-radius:4px;}
+
+  .tf-jart-filed{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:44px;padding-top:8px;}
+  .tf-jart-filed > span{font-size:13px;color:var(--muted);}
+  .tf-jart-tag{font-size:12.5px;font-weight:500;color:var(--accent-link);border:1px solid var(--tag-border);border-radius:100px;padding:5px 13px;}
+  .tf-jart-tag:hover{background:var(--quote-bg);}
+
+  .tf-jart-related{max-width:1180px;margin:32px auto 0;padding:24px 24px 88px;}
+  .tf-jart-related h3{font-family:'Newsreader',serif;font-weight:500;font-size:26px;letter-spacing:-0.01em;margin:0 0 32px;}
+  .tf-jart-rel-grid{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:36px 28px !important;}
+  .tf-jart-rel-card{display:flex !important;flex-direction:column;}
+  .tf-jart-thumb{aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--img-base);width:100%;}
+  .tf-jart-thumb img{width:100% !important;height:100% !important;object-fit:cover !important;display:block !important;transition:transform 0.4s ease;}
+  .tf-jart-fill{width:100%;height:100%;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,0.028) 0 11px,rgba(0,0,0,0.05) 11px 22px);display:flex;align-items:center;justify-content:center;}
+  .tf-jart-fill span{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:0.03em;color:oklch(0.42 0.01 250);background:rgba(255,255,255,0.72);padding:5px 9px;border-radius:3px;text-align:center;}
+  .tf-jart-rel-kicker{font-size:10.5px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--accent);margin:16px 0 7px;min-height:13px;}
+  .tf-jart-rel-title{font-family:'Newsreader',serif;font-weight:500;font-size:19px;line-height:1.22;letter-spacing:-0.005em;color:var(--ink-2);margin:0;transition:color 0.2s ease;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .tf-jart-rel-card:hover .tf-jart-rel-title{color:var(--accent-hover);}
+  .tf-jart-rel-card:hover .tf-jart-thumb img{transform:scale(1.015);}
+
+  @media (max-width:720px){
+    .tf-jart h1{font-size:34px;}
+    .tf-jart-rel-grid{grid-template-columns:1fr !important;}
+  }
+</style>
+
+<div class="tf-jart">
+  <article class="tf-jart-article">
+    <a class="tf-jart-back" href="{{ blog.url }}">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg>
+      Back to {{ blog.title | default: 'Journal' }}
+    </a>
+
+    {%- assign kick = article.metafields.custom.category -%}
+    {%- if kick == blank -%}{%- assign kick = article.tags | first -%}{%- endif -%}
+    {%- if kick != blank -%}<div class="tf-jart-kicker">{{ kick }}</div>{%- endif -%}
+
+    <h1>{{ article.title }}</h1>
+
+    {%- assign words = article.content | strip_html | number_of_words -%}
+    {%- assign rt = words | divided_by: 200 | at_least: 1 -%}
+    <div class="tf-jart-meta">
+      <span>By the Twinfold Journal</span>
+      <span class="tf-jart-dot"></span>
+      <span>{{ article.published_at | date: '%B %Y' }}</span>
+      <span class="tf-jart-dot"></span>
+      <span>{{ rt }} min read</span>
+    </div>
+
+    {%- if article.image -%}
+    <figure>
+      <div class="tf-jart-hero"><img src="{{ article.image | image_url: width: 1200 }}" alt="{{ article.image.alt | escape | default: article.title | escape }}"></div>
+      {%- assign cap = article.metafields.custom.hero_caption -%}
+      {%- if cap != blank -%}<figcaption>{{ cap }}</figcaption>{%- endif -%}
+    </figure>
+    {%- endif -%}
+
+    <div class="tf-jart-body">
+      {{ article.content }}
+    </div>
+
+    {%- if article.tags.size > 0 -%}
+    <div class="tf-jart-filed">
+      <span>Filed under</span>
+      {%- for tag in article.tags limit: 4 -%}
+        <a class="tf-jart-tag" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </article>
+
+  {%- assign rel_count = 0 -%}
+  {%- assign has_rel = false -%}
+  {%- for a in blog.articles -%}{%- if a.id != article.id -%}{%- assign has_rel = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
+  {%- if has_rel -%}
+  <section class="tf-jart-related">
+    <h3>More from the Journal</h3>
+    <div class="tf-jart-rel-grid">
+      {%- for a in blog.articles -%}
+        {%- if a.id != article.id and rel_count < 3 -%}
+          {%- assign rk = a.metafields.custom.category -%}
+          {%- if rk == blank -%}{%- assign rk = a.tags | first -%}{%- endif -%}
+          <a class="tf-jart-rel-card" href="{{ a.url }}">
+            <div class="tf-jart-thumb">
+              {%- if a.image -%}
+                <img src="{{ a.image | image_url: width: 600 }}" alt="{{ a.title | escape }}" loading="lazy">
+              {%- else -%}
+                <div class="tf-jart-fill"><span>{{ a.title | truncatewords: 4, '' | escape }}</span></div>
+              {%- endif -%}
+            </div>
+            <div class="tf-jart-rel-kicker">{{ rk }}</div>
+            <h4 class="tf-jart-rel-title">{{ a.title }}</h4>
+          </a>
+          {%- assign rel_count = rel_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Journal article",
+  "tag": "section",
+  "settings": [],
+  "presets": [ { "name": "Journal article" } ]
+}
+{% endschema %}
