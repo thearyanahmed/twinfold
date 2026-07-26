@@ -145,10 +145,10 @@
   assign journal_link = s.hero_btn2_link | default: blogs.journal.url
   assign seasonal_link = s.seasonal_link | default: routes.all_products_collection_url
   assign ppc = s.products_per_carousel
-  assign ch_handles = 'desk-paper|brew-and-sip|the-calm-corner' | split: '|'
-  assign ch_anchors = 'desk-paper|brew-sip|calm-corner' | split: '|'
-  assign ch_titles = s.ch1_title | append: '~~' | append: s.ch2_title | append: '~~' | append: s.ch3_title | split: '~~'
-  assign ch_blurbs = s.ch1_blurb | append: '~~' | append: s.ch2_blurb | append: '~~' | append: s.ch3_blurb | split: '~~'
+  assign ch_handles = 'desk-and-paper|objects|brew-and-sip|the-calm-corner' | split: '|'
+  assign ch_anchors = 'desk-paper|objects|brew-sip|calm-corner' | split: '|'
+  assign ch_titles = s.ch1_title | append: '~~' | append: s.ch_obj_title | append: '~~' | append: s.ch2_title | append: '~~' | append: s.ch3_title | split: '~~'
+  assign ch_blurbs = s.ch1_blurb | append: '~~' | append: s.ch_obj_blurb | append: '~~' | append: s.ch2_blurb | append: '~~' | append: s.ch3_blurb | split: '~~'
 -%}
 
 <div class="tf-h2">
@@ -248,9 +248,21 @@
         <a class="tf-season-link tf-navlink" href="{{ seasonal_link }}">{{ s.seasonal_link_text }} <span>&rarr;</span></a>
       </div>
       <div class="tf-season-img" style="background-color:oklch(0.9 0.025 70)">
-        {%- if s.seasonal_image != blank -%}
-          <div class="tf-imgfill"><img src="{{ s.seasonal_image | image_url: width: 900 }}" alt="{{ s.seasonal_image.alt | escape }}"></div>
-        {%- else -%}<div class="tf-ph"><span>seasonal edit — styled scene</span></div>{%- endif -%}
+        {%- liquid
+          assign season_img = s.seasonal_image
+          if season_img == blank
+            assign hl_prod = all_products['japan-pen-holder']
+            if hl_prod != blank and hl_prod.featured_image
+              assign season_img = hl_prod.featured_image
+            endif
+          endif
+          if season_img == blank and collections['desk-and-paper'].products.first.featured_image
+            assign season_img = collections['desk-and-paper'].products.first.featured_image
+          endif
+        -%}
+        {%- if season_img != blank -%}
+          <div class="tf-imgfill"><img src="{{ season_img | image_url: width: 900 }}" alt="{{ season_img.alt | default: s.seasonal_heading | escape }}"></div>
+        {%- else -%}<div class="tf-ph"><span>new in — desk objects</span></div>{%- endif -%}
       </div>
     </div>
   </section>
@@ -270,7 +282,7 @@
       {%- for product in kitsC.products limit: s.kits_count -%}
         {%- assign kk = '' -%}
         {%- for c in product.collections -%}
-          {%- if c.handle == 'desk-paper' or c.handle == 'brew-and-sip' or c.handle == 'the-calm-corner' -%}
+          {%- if c.handle == 'desk-and-paper' or c.handle == 'brew-and-sip' or c.handle == 'the-calm-corner' -%}
             {%- if kk == '' -%}{%- assign kk = c.title -%}{%- else -%}{%- assign kk = kk | append: ' · ' | append: c.title -%}{%- endif -%}
           {%- endif -%}
         {%- endfor -%}
@@ -404,6 +416,8 @@
     { "type": "range", "id": "products_per_carousel", "min": 4, "max": 12, "step": 1, "label": "Products per carousel", "default": 8 },
     { "type": "text", "id": "ch1_title", "label": "Chapter 1 title", "default": "Think in paper" },
     { "type": "textarea", "id": "ch1_blurb", "label": "Chapter 1 blurb", "default": "Before the inbox, before anything loads — a notebook, a good pen, and a first clear thought put down by hand." },
+    { "type": "text", "id": "ch_obj_title", "label": "Objects chapter title", "default": "Objects for the desk" },
+    { "type": "textarea", "id": "ch_obj_blurb", "label": "Objects chapter blurb", "default": "The considered things that sit beside the notebook — pen holders and desk pieces, pressed from rescued materials and made to keep." },
     { "type": "text", "id": "ch2_title", "label": "Chapter 2 title", "default": "Then, make coffee" },
     { "type": "textarea", "id": "ch2_blurb", "label": "Chapter 2 blurb", "default": "The kettle, the slow pour, a mug that feels right in two hands. Ten unhurried minutes that are only yours." },
     { "type": "text", "id": "ch3_title", "label": "Chapter 3 title", "default": "Where you sit matters" },

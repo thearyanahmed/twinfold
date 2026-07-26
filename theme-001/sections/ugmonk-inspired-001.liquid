@@ -35,6 +35,18 @@
     .ug001 .tf-thumbs button{width:66px !important;height:66px !important;}
     .ug001 .tf-hero{flex:1;min-width:0;order:0;}
   }
+
+  /* Twinfold: Hanken headings + larger type on the product page */
+  .ug001 [style*="Spectral"]{font-family:'Hanken Grotesk',system-ui,sans-serif !important;letter-spacing:-.01em;font-weight:600 !important;}
+  .ug001 h1{font-size:34px !important;line-height:1.08 !important;}
+  .ug001 #ugHeaderPrice{font-size:22px !important;}
+  .ug001 h2{font-size:24px !important;}
+  .ug001 .ugAcc span:first-child{font-size:18px !important;}
+  .ug001 #ugPanelDetails > div{font-size:15.5px !important;line-height:1.65 !important;}
+  .ug001 .tf-story p{font-size:15.5px !important;line-height:1.7 !important;}
+  .ug001 .tf-story h3{font-size:19px !important;}
+  .ug001 .tf-values-row p{font-size:14px !important;}
+  .ug001 .tf-values-row div[style*="Spectral"]{font-size:16px !important;}
 </style>
 
 {%- assign selvar = product.selected_or_first_available_variant -%}

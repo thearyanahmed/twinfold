@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "col": {
+      "type": "notebooks-collection",
+      "settings": {
+        "hero_kicker": "Objects for the desk",
+        "hero_heading": "The considered desktop",
+        "hero_subcopy": "A small set of desk objects pressed from rescued wood — pen holders and organisers that keep a working surface calm. Made responsibly, kept for years.",
+        "hero_btn1": "Shop the objects",
+        "hero_btn2": "How they’re made",
+        "story_text": "Rescued materials, named makers, and forms quiet enough to live on your desk. We choose every object against one standard — then let it earn its place.",
+        "grid_heading": "Small things, well made",
+        "standard_kicker": "What makes a Twinfold object",
+        "standard_lead": "We don’t clutter the desk. We choose a few objects against one standard — what they’re made of, who made them, and whether they’ll still be here in ten years.",
+        "proof1_title": "Made close to home",
+        "proof1_body": "Designed and pressed by a small workshop in France — short supply chains and named makers, not anonymous factories.",
+        "proof2_title": "Rescued materials",
+        "proof2_body": "Bio-composite wood: recycled European wood fibres bound with a corn-derived, plant-based polymer. Waste, given a second life.",
+        "proof3_title": "Made to keep",
+        "proof3_body": "Solid, tactile forms that hold their shape and wipe clean. Objects you’ll refill and reuse, not replace.",
+        "proof4_title": "Kind at the end",
+        "proof4_body": "Recyclable, and made to be kept — objects you refill and reuse, not replace.",
+        "materials_heading": "",
+        "sizes_heading": "",
+        "companion_collection": "notebooks",
+        "companion_kicker": "The other half of the desk",
+        "companion_heading": "What goes on the page",
+        "companion_lead": "An object earns its keep beside a good notebook. Start with paper worth writing on.",
+        "trust_award": "Pressed from bio-composite wood — recycled fibres and a plant-based binder, made in France.",
+        "closing_text": "Build a desk from a few things you’ll keep.",
+        "closing_cta": "Shop the objects",
+        "closing_link": "Read the Journal"
+      }
+    }
+  },
+  "order": ["col"]
+}

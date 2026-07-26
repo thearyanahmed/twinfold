@@ -17,6 +17,7 @@
 
   assign can_add_to_cart = false
   assign add_to_cart_text = 'products.product.unavailable' | t
+  assign is_preorder = false
 
   if variant
     if variant.quantity_rule.min > variant.inventory_quantity and inventory_managed and inventory_policy == 'deny'
@@ -26,6 +27,10 @@
     if variant.available
       assign can_add_to_cart = true
       assign add_to_cart_text = 'products.product.add_to_cart' | t
+      if block_settings.enable_preorder and inventory_managed and inventory_quantity <= 0 and inventory_policy == 'continue'
+        assign is_preorder = true
+        assign add_to_cart_text = block_settings.preorder_label | default: 'Pre-order'
+      endif
     elsif inventory_managed and inventory_quantity <= 0 and inventory_policy == 'deny' or quantity_rule_soldout
       assign can_add_to_cart = false
       assign add_to_cart_text = 'products.product.sold_out' | t
@@ -221,6 +226,20 @@
               </div>
             </volume-pricing>
           {%- endif -%}
+          {%- if is_preorder -%}
+            <div class="preorder-banner">
+              <span class="preorder-pill">{{ block_settings.preorder_badge | default: 'Pre-order' }}</span>
+              {%- if block_settings.preorder_note != blank -%}
+                <span class="preorder-banner__note">{{ block_settings.preorder_note }}</span>
+              {%- endif -%}
+            </div>
+            <style>
+              .preorder-banner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+              .preorder-banner .preorder-pill{display:inline-flex;align-items:center;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:oklch(0.34 0.03 150);padding:4px 11px;border-radius:100px;}
+              .preorder-banner__note{font-size:13.5px;line-height:1.4;color:oklch(0.45 0.01 250);}
+            </style>
+          {%- endif -%}
+
           {% content_for 'block',
             type: 'add-to-cart',
             id: 'add-to-cart',
@@ -393,6 +412,35 @@
       "id": "stacking",
       "label": "t:settings.always_stack_buttons",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Pre-order"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_preorder",
+      "label": "Show pre-order state",
+      "info": "When a variant is at 0 stock with 'Continue selling when out of stock' on, the button becomes a pre-order (still takes payment).",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "preorder_badge",
+      "label": "Pre-order badge",
+      "default": "Pre-order"
+    },
+    {
+      "type": "text",
+      "id": "preorder_label",
+      "label": "Pre-order button text",
+      "default": "Pre-order"
+    },
+    {
+      "type": "text",
+      "id": "preorder_note",
+      "label": "Pre-order dispatch note",
+      "default": "Made to order — ships within 2–3 weeks"
     },
     {
       "type": "color",

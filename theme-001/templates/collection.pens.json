@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "col": {
+      "type": "notebooks-collection",
+      "settings": {
+        "hero_kicker": "Pens & Writing",
+        "hero_heading": "Something worth writing with",
+        "hero_subcopy": "Pens, ink and the tools that fill a page — refillable, considered, made to be kept and used, not thrown away.",
+        "hero_btn1": "Shop Pens & Writing",
+        "hero_btn2": "Read the Journal",
+        "story_text": "A small set of writing tools chosen to last — refillable pens, proper ink, and pieces that feel right in the hand.",
+        "grid_heading": "Tools for the page",
+        "standard_kicker": "What makes a Twinfold pen",
+        "standard_lead": "We don’t sell disposables. A few writing tools chosen to be refilled for life — how they’re made matters as much as how they write.",
+        "proof1_title": "Refillable for life",
+        "proof1_body": "Pens built to be topped up, not binned. Ink by the bottle, not the cartridge.",
+        "proof2_title": "Made close to home",
+        "proof2_body": "UK and European makers with real craft heritage — named workshops, not anonymous factories.",
+        "proof3_title": "Made to keep",
+        "proof3_body": "Brass, wood and proper nibs that age with use and last for years.",
+        "proof4_title": "Less to throw away",
+        "proof4_body": "Refill instead of replace — the most sustainable pen is the one you already own.",
+        "materials_heading": "",
+        "sizes_heading": "",
+        "companion_collection": "notebooks",
+        "companion_kicker": "The other half of the desk",
+        "companion_heading": "Somewhere to write",
+        "companion_lead": "A good pen wants a good page. Start with a notebook worth filling.",
+        "trust_award": "",
+        "closing_text": "Write with something you’ll keep.",
+        "closing_cta": "Shop Pens & Writing",
+        "closing_link": "Read the Journal"
+      }
+    }
+  },
+  "order": ["col"]
+}

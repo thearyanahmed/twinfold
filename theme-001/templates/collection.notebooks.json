@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "notebooks_collection": {
+      "type": "notebooks-collection",
+      "settings": {}
+    }
+  },
+  "order": ["notebooks_collection"]
+}

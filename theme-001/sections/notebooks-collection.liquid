@@ -1,0 +1,424 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  .tnb{
+    --paper:oklch(0.988 0.005 95); --ink:oklch(0.2 0.01 260); --ink-2:oklch(0.24 0.01 260);
+    --body:oklch(0.36 0.008 260); --muted:oklch(0.45 0.01 250); --meta:oklch(0.5 0.01 250);
+    --accent:oklch(0.55 0.045 150); --accent-link:oklch(0.42 0.05 150); --accent-hover:oklch(0.45 0.05 150);
+    --btn:oklch(0.24 0.02 150); --btn-hover:oklch(0.34 0.03 150);
+    --band:oklch(0.965 0.014 145); --kit-bg:oklch(0.968 0.013 145); --kit-border:oklch(0.91 0.018 145);
+    --line:oklch(0.82 0.006 120); --img-base:oklch(1 0 0); --card:oklch(1 0 0);
+    background:var(--paper);font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink-2);
+  }
+  .tnb *{box-sizing:border-box;margin:0;padding:0}
+  .tnb a{color:inherit;text-decoration:none}
+  .tnb h1,.tnb h2,.tnb h3,.tnb h4{font-family:'Hanken Grotesk',system-ui,sans-serif !important;font-weight:600;letter-spacing:-.01em}
+  .tnb .tnb-navlink{transition:color .2s ease}.tnb .tnb-navlink:hover{color:var(--accent-hover)}
+  .tnb .tnb-kicker{font-family:'Hanken Grotesk';font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .tnb .tnb-imgfill{width:100%;height:100%}
+  .tnb .tnb-imgfill img{width:100%;height:100%;object-fit:cover;display:block;box-sizing:border-box}
+  .tnb .tnb-ph{background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.028) 0 11px,rgba(0,0,0,.05) 11px 22px);display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+  .tnb .tnb-ph span{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:oklch(0.42 0.01 250);background:rgba(255,255,255,.72);padding:5px 9px;border-radius:3px;text-align:center}
+  .tnb .tnb-wrap{max-width:1280px;margin:0 auto;padding:0 56px}
+  .tnb .tnb-btn-dark{display:inline-block;font-family:'Hanken Grotesk';font-size:15px;font-weight:500;color:oklch(0.98 0 0);background:var(--btn);padding:14px 26px;border-radius:100px;border:none;cursor:pointer;transition:background .2s ease}.tnb .tnb-btn-dark:hover{background:var(--btn-hover)}
+  .tnb .tnb-btn-line{display:inline-block;font-family:'Hanken Grotesk';font-size:15px;font-weight:500;color:oklch(0.28 0.01 260);border:1px solid var(--line);padding:14px 26px;border-radius:100px;transition:background .2s ease}.tnb .tnb-btn-line:hover{background:oklch(0.955 0.012 145)}
+  .tnb .tnb-link-arrow{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;color:var(--accent-link)}
+
+  .tnb .tnb-crumb{display:flex;gap:9px;align-items:center;font-size:13px;color:var(--meta)}
+  .tnb .tnb-crumb a{transition:color .2s ease}.tnb .tnb-crumb a:hover{color:var(--accent-hover)}
+  .tnb .tnb-crumb .tnb-sep{color:oklch(0.75 0.01 250)}.tnb .tnb-crumb .tnb-here{color:var(--ink-2)}
+
+  /* 1 · hero */
+  .tnb .tnb-hero{padding-top:10px}
+  .tnb .tnb-hero-inner{max-width:1440px;margin:0 auto;padding:20px 56px 0;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+  .tnb .tnb-hero-copy{display:flex;flex-direction:column;justify-content:center}
+  .tnb .tnb-hero .tnb-crumb{margin-bottom:22px}
+  .tnb .tnb-hero h1{font-size:60px;line-height:1.04;letter-spacing:-.02em;color:var(--ink);margin:18px 0 24px}
+  .tnb .tnb-hero p{font-family:'Newsreader';font-size:20px;line-height:1.55;color:var(--body);max-width:460px;margin-bottom:32px}
+  .tnb .tnb-hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .tnb .tnb-hero-img{min-height:520px;background:var(--img-base);position:relative;overflow:hidden;border-radius:16px}
+
+  /* story */
+  .tnb .tnb-story{padding:88px 56px;text-align:center}
+  .tnb .tnb-story-inner{max-width:760px;margin:0 auto}
+  .tnb .tnb-story p{font-family:'Newsreader';font-size:27px;line-height:1.45;letter-spacing:-.01em;color:oklch(0.26 0.01 260);margin-top:16px}
+
+  /* 2 · standard band */
+  .tnb .tnb-standard{background:var(--band);margin-top:96px;padding:88px 56px}
+  .tnb .tnb-standard-inner{max-width:1280px;margin:0 auto}
+  .tnb .tnb-standard-lead{font-family:'Newsreader';font-size:26px;line-height:1.45;color:oklch(0.26 0.01 260);max-width:720px;margin:16px 0 56px}
+  .tnb .tnb-proofs{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+  .tnb .tnb-proof .tnb-p-icon{color:var(--accent);margin-bottom:16px}
+  .tnb .tnb-proof h3{font-size:21px;line-height:1.2;color:var(--ink-2);margin-bottom:10px}
+  .tnb .tnb-proof p{font-size:14.5px;line-height:1.6;color:var(--body)}
+
+  /* 3 · materials */
+  .tnb .tnb-materials{padding-top:96px}
+  .tnb .tnb-materials .tnb-head{max-width:640px;margin:0 auto 44px;text-align:center}
+  .tnb .tnb-materials h2{font-size:34px;line-height:1.15;color:var(--ink);margin:14px 0}
+  .tnb .tnb-materials .tnb-intro{font-family:'Newsreader';font-size:19px;line-height:1.55;color:var(--body)}
+  .tnb .tnb-fold{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:16px;overflow:hidden;position:relative}
+  .tnb .tnb-fold-panel{padding:48px;position:relative}
+  .tnb .tnb-fold-panel .tnb-tag{font-family:'Hanken Grotesk';font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-link);margin-bottom:16px}
+  .tnb .tnb-fold-panel h3{font-family:'Newsreader';font-size:24px;line-height:1.2;color:var(--ink-2);margin-bottom:14px}
+  .tnb .tnb-fold-panel p{font-size:15px;line-height:1.65;color:var(--body)}
+  .tnb .tnb-fold-panel.tnb-interior{background:oklch(0.968 0.013 145)}
+  .tnb .tnb-fold-panel.tnb-covers{background:oklch(0.955 0.018 130)}
+  .tnb .tnb-fold-seam{position:absolute;top:0;bottom:0;left:50%;width:1px;background:oklch(0.86 0.02 140);transform:translateX(-.5px)}
+
+  /* 4 · grid */
+  .tnb .tnb-collection{padding-top:64px}
+  .tnb .tnb-collection-inner{max-width:1440px;margin:0 auto;padding:0 56px}
+  .tnb .tnb-collection .tnb-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:36px}
+  .tnb .tnb-collection .tnb-head h2{font-size:32px;color:var(--ink);margin-top:8px}
+  .tnb .tnb-collection .tnb-count{font-size:14px;color:var(--meta);white-space:nowrap}
+  .tnb .tnb-feature{display:grid;grid-template-columns:1.35fr 1fr;border-radius:16px;overflow:hidden;background:var(--kit-bg);border:1px solid var(--kit-border);margin-bottom:44px;transition:box-shadow .25s ease,border-color .25s ease}
+  .tnb .tnb-feature:hover{box-shadow:0 22px 52px -26px oklch(0.4 0.03 150 / .42);border-color:oklch(0.82 0.03 150)}
+  .tnb .tnb-feature .tnb-fimg{position:relative;min-height:440px;background:var(--img-base)}
+  .tnb .tnb-feature .tnb-fimg .tnb-layer{position:absolute;inset:0;transition:opacity .45s ease}
+  .tnb .tnb-feature .tnb-fimg .tnb-layer.tnb-two{opacity:0}
+  .tnb .tnb-feature:hover .tnb-fimg .tnb-layer.tnb-two{opacity:1}
+  .tnb .tnb-feature .tnb-fimg .tnb-imgfill img{object-fit:contain;padding:7%}
+  .tnb .tnb-fbody{padding:56px;display:flex;flex-direction:column;justify-content:center}
+  .tnb .tnb-fbody h3{font-size:34px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin:14px 0}
+  .tnb .tnb-fbody p{font-family:'Newsreader';font-size:18px;line-height:1.55;color:var(--body);margin-bottom:28px;max-width:430px}
+  .tnb .tnb-fmeta{display:flex;align-items:center;gap:24px}
+  .tnb .tnb-fmeta .tnb-fprice{font-family:'Newsreader';font-size:22px;color:var(--ink-2)}
+  .tnb .tnb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 24px}
+  .tnb .tnb-prod{display:flex;flex-direction:column;background:var(--card);border:1px solid oklch(0.9 0.006 120);border-radius:14px;padding:14px 14px 20px;transition:box-shadow .25s ease,border-color .25s ease,transform .25s ease}
+  .tnb .tnb-prod:hover{box-shadow:0 14px 34px -18px oklch(0.4 0.03 150 / .38);border-color:oklch(0.82 0.03 150);transform:translateY(-3px)}
+  .tnb .tnb-prod .tnb-pthumb{aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:var(--img-base);position:relative}
+  .tnb .tnb-prod .tnb-pthumb .tnb-layer{position:absolute;inset:0;transition:opacity .45s ease}
+  .tnb .tnb-prod .tnb-pthumb .tnb-imgfill img{object-fit:contain;padding:12%}
+  .tnb .tnb-prod .tnb-pthumb .tnb-layer.tnb-two{opacity:0}
+  .tnb .tnb-prod:hover .tnb-pthumb .tnb-layer.tnb-two,.tnb .tnb-prod:focus-visible .tnb-pthumb .tnb-layer.tnb-two{opacity:1}
+  .tnb .tnb-prod-name{font-family:'Newsreader',serif !important;font-size:18px !important;font-weight:500;line-height:1.28;margin:16px 2px 7px;transition:color .2s ease;color:var(--ink-2)}
+  .tnb .tnb-prod:hover .tnb-prod-name{color:var(--accent-hover)}
+  .tnb .tnb-pprice{font-family:'Newsreader',serif !important;font-size:15px !important;color:var(--muted);margin-left:2px}
+
+  /* 5 · sizes */
+  .tnb .tnb-sizes{padding-top:96px}
+  .tnb .tnb-sizes .tnb-head{max-width:600px;margin:0 auto 40px;text-align:center}
+  .tnb .tnb-sizes h2{font-size:32px;color:var(--ink);margin:14px 0 10px}
+  .tnb .tnb-sizes .tnb-intro{font-family:'Newsreader';font-size:18px;line-height:1.55;color:var(--body)}
+  .tnb .tnb-size-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .tnb .tnb-size-card{background:var(--kit-bg);border:1px solid var(--kit-border);border-radius:12px;padding:32px 30px}
+  .tnb .tnb-size-card .tnb-dim{font-family:'Newsreader';font-size:15px;color:var(--accent-link);margin-bottom:6px}
+  .tnb .tnb-size-card h3{font-size:22px;color:var(--ink-2);margin-bottom:12px}
+  .tnb .tnb-size-card p{font-size:14.5px;line-height:1.6;color:var(--body)}
+
+  /* companions */
+  .tnb .tnb-companions{margin-top:96px;background:oklch(0.955 0.02 145)}
+  .tnb .tnb-companions-inner{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch;padding:40px 56px}
+  .tnb .tnb-comp-img{min-height:520px;background:var(--img-base);position:relative;overflow:hidden;border-radius:16px}
+  .tnb .tnb-comp-body{padding:24px 0;display:flex;flex-direction:column;justify-content:center}
+  .tnb .tnb-comp-body h2{font-size:36px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin:14px 0 12px}
+  .tnb .tnb-comp-lead{font-family:'Newsreader';font-size:18px;line-height:1.55;color:var(--body);max-width:420px;margin-bottom:14px}
+  .tnb .tnb-comp-list{display:flex;flex-direction:column}
+  .tnb .tnb-comp-item{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:24px 0;border-top:1px solid oklch(0.86 0.02 140);transition:padding-left .25s ease}
+  .tnb .tnb-comp-item:hover{padding-left:8px}
+  .tnb .tnb-comp-item:hover .tnb-ci-name{color:var(--accent-hover)}
+  .tnb .tnb-ci-index{font-family:'Newsreader';font-size:15px;color:var(--accent-link)}
+  .tnb .tnb-ci-name{font-family:'Newsreader';font-size:20px;line-height:1.2;color:var(--ink-2);transition:color .2s ease}
+  .tnb .tnb-ci-desc{font-size:13.5px;line-height:1.4;color:var(--muted);margin-top:4px;display:block}
+  .tnb .tnb-ci-price{font-size:15px;color:var(--body);white-space:nowrap}
+
+  /* 6 · trust */
+  .tnb .tnb-trust{margin-top:96px;background:var(--paper);padding:56px 56px}
+  .tnb .tnb-trust-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:28px 48px;align-items:center;justify-content:center}
+  .tnb .tnb-trust-fact{display:flex;align-items:center;gap:12px;color:var(--body)}
+  .tnb .tnb-trust-fact svg{color:var(--accent);flex:none}
+  .tnb .tnb-trust-fact span{font-size:15px}
+  .tnb .tnb-trust-award{max-width:1280px;margin:22px auto 0;text-align:center;font-size:13px;color:var(--meta)}
+
+  /* 7 · closing */
+  .tnb .tnb-closing{max-width:720px;margin:0 auto;padding:96px 56px 112px;text-align:center}
+  .tnb .tnb-closing p{font-family:'Newsreader';font-size:30px;line-height:1.35;letter-spacing:-.01em;color:oklch(0.28 0.01 260);margin-bottom:34px}
+  .tnb .tnb-cta-row{display:flex;gap:20px;align-items:center;justify-content:center;flex-wrap:wrap}
+
+  @media(max-width:1000px){
+    .tnb .tnb-hero-inner{grid-template-columns:1fr;padding:16px 24px 0}.tnb .tnb-hero-img{order:-1;min-height:300px}.tnb .tnb-hero-copy{padding:32px 0 0}
+    .tnb .tnb-story{padding:56px 24px}.tnb .tnb-story p{font-size:23px}
+    .tnb .tnb-companions-inner{grid-template-columns:1fr;gap:28px;padding:32px 24px}.tnb .tnb-comp-img{min-height:320px;order:-1}.tnb .tnb-comp-body{padding:8px 0}.tnb .tnb-comp-body h2{font-size:30px}
+    .tnb .tnb-proofs{grid-template-columns:1fr 1fr}.tnb .tnb-grid{grid-template-columns:1fr 1fr}
+    .tnb .tnb-feature{grid-template-columns:1fr}.tnb .tnb-feature .tnb-fimg{min-height:300px}.tnb .tnb-fbody{padding:36px 28px}.tnb .tnb-fbody h3{font-size:28px}
+    .tnb .tnb-collection-inner{padding:0 24px}
+    .tnb .tnb-size-grid{grid-template-columns:1fr}
+    .tnb .tnb-wrap,.tnb .tnb-standard,.tnb .tnb-trust,.tnb .tnb-closing{padding-left:24px;padding-right:24px}
+    .tnb .tnb-materials,.tnb .tnb-collection,.tnb .tnb-sizes{padding-top:64px}.tnb .tnb-standard,.tnb .tnb-trust{margin-top:64px;padding-top:64px;padding-bottom:64px}
+  }
+  @media(max-width:600px){
+    .tnb .tnb-hero h1{font-size:40px}.tnb .tnb-proofs{grid-template-columns:1fr}
+    .tnb .tnb-fold{grid-template-columns:1fr}.tnb .tnb-fold-seam{display:none}.tnb .tnb-fold-panel{padding:36px 28px}
+    .tnb .tnb-grid{grid-template-columns:1fr 1fr;gap:28px 18px}
+    .tnb .tnb-closing{padding:64px 24px 88px}.tnb .tnb-closing p{font-size:25px}
+  }
+</style>
+
+{%- liquid
+  assign s = section.settings
+  assign hero_img = s.hero_image
+  if hero_img == blank
+    assign hero_img = collection.image
+  endif
+  if hero_img == blank and collection.products.first.featured_image
+    assign hero_img = collection.products.first.featured_image
+  endif
+-%}
+
+<div class="tnb">
+
+  <!-- 1 · HERO -->
+  <section class="tnb-hero">
+    <div class="tnb-hero-inner">
+      <div class="tnb-hero-copy">
+        <div class="tnb-crumb">
+          <a href="{{ routes.root_url }}">Home</a><span class="tnb-sep">/</span>
+          <span class="tnb-here">{{ collection.title }}</span>
+        </div>
+        <div class="tnb-kicker">{{ s.hero_kicker }}</div>
+        <h1>{{ s.hero_heading }}</h1>
+        <p>{{ s.hero_subcopy }}</p>
+        <div class="tnb-hero-actions">
+          <a class="tnb-btn-dark" href="#tnb-collection">{{ s.hero_btn1 }}</a>
+          <a class="tnb-btn-line" href="#tnb-story">{{ s.hero_btn2 }}</a>
+        </div>
+      </div>
+      <div class="tnb-hero-img">
+        {%- if hero_img != blank -%}
+          <div class="tnb-imgfill"><img src="{{ hero_img | image_url: width: 1200 }}" alt="{{ hero_img.alt | default: collection.title | escape }}"></div>
+        {%- else -%}<div class="tnb-ph"><span>hero — notebooks on a calm desk</span></div>{%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="tnb-story" id="tnb-story">
+    <div class="tnb-story-inner">
+      <div class="tnb-kicker" style="letter-spacing:.16em">{{ s.story_kicker }}</div>
+      <p>{{ s.story_text }}</p>
+    </div>
+  </section>
+
+  <!-- COLLECTION GRID -->
+  <section class="tnb-collection" id="tnb-collection">
+    <div class="tnb-collection-inner">
+      <div class="tnb-head">
+        <div>
+          <div class="tnb-kicker">{{ s.grid_kicker }}</div>
+          <h2>{{ s.grid_heading }}</h2>
+        </div>
+        <span class="tnb-count">{{ collection.all_products_count }} pieces</span>
+      </div>
+
+      {%- for product in collection.products -%}
+        {%- if forloop.first -%}
+          <a class="tnb-feature" href="{{ product.url }}">
+            <div class="tnb-fimg">
+              {%- if product.featured_image -%}
+                <div class="tnb-layer tnb-one tnb-imgfill"><img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.title | escape }}"></div>
+                {%- if product.images[1] -%}<div class="tnb-layer tnb-two tnb-imgfill"><img src="{{ product.images[1] | image_url: width: 900 }}" alt="{{ product.title | escape }}" loading="lazy"></div>{%- endif -%}
+              {%- else -%}<div class="tnb-layer tnb-one tnb-ph"><span>{{ product.title | escape }}</span></div>{%- endif -%}
+            </div>
+            <div class="tnb-fbody">
+              {%- if s.feature_badge != blank -%}<div class="tnb-kicker">{{ s.feature_badge }}</div>{%- endif -%}
+              <h3>{{ product.title }}</h3>
+              {%- if product.description != blank -%}<p>{{ product.description | strip_html | truncatewords: 34 }}</p>{%- endif -%}
+              <div class="tnb-fmeta"><span class="tnb-fprice">{{ product.price | money }}</span><span class="tnb-link-arrow">View notebook <span>&rarr;</span></span></div>
+            </div>
+          </a>
+          <div class="tnb-grid">
+        {%- else -%}
+          <a class="tnb-prod" href="{{ product.url }}">
+            <div class="tnb-pthumb">
+              {%- if product.featured_image -%}
+                <div class="tnb-layer tnb-one tnb-imgfill"><img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title | escape }}" loading="lazy"></div>
+                {%- if product.images[1] -%}<div class="tnb-layer tnb-two tnb-imgfill"><img src="{{ product.images[1] | image_url: width: 500 }}" alt="{{ product.title | escape }}" loading="lazy"></div>{%- endif -%}
+              {%- else -%}<div class="tnb-layer tnb-one tnb-ph"><span>{{ product.title | escape }}</span></div>{%- endif -%}
+            </div>
+            <h3 class="tnb-prod-name">{{ product.title }}</h3><span class="tnb-pprice">{{ product.price | money }}</span>
+          </a>
+        {%- endif -%}
+        {%- if forloop.last and collection.products.size > 1 -%}</div>{%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <!-- 2 · STANDARD BAND -->
+  {%- if s.standard_lead != blank -%}
+  <section class="tnb-standard" id="tnb-standard">
+    <div class="tnb-standard-inner">
+      {%- if s.standard_kicker != blank -%}<div class="tnb-kicker" style="letter-spacing:.16em">{{ s.standard_kicker }}</div>{%- endif -%}
+      <p class="tnb-standard-lead">{{ s.standard_lead }}</p>
+      <div class="tnb-proofs">
+        {%- if s.proof1_title != blank -%}<div class="tnb-proof"><div class="tnb-p-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3>{{ s.proof1_title }}</h3><p>{{ s.proof1_body }}</p></div>{%- endif -%}
+        {%- if s.proof2_title != blank -%}<div class="tnb-proof"><div class="tnb-p-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 4v5h-5"/><path d="M12 8v4l3 2"/></svg></div><h3>{{ s.proof2_title }}</h3><p>{{ s.proof2_body }}</p></div>{%- endif -%}
+        {%- if s.proof3_title != blank -%}<div class="tnb-proof"><div class="tnb-p-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 3v6h6"/><path d="M8 14h8"/><path d="M8 17h5"/></svg></div><h3>{{ s.proof3_title }}</h3><p>{{ s.proof3_body }}</p></div>{%- endif -%}
+        {%- if s.proof4_title != blank -%}<div class="tnb-proof"><div class="tnb-p-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22c5-3 7-7 7-11V5l-7-2-7 2v6c0 4 2 8 7 11z"/><path d="M12 12c0-3 2-5 4-5-1 3-2 4-4 5z"/><path d="M12 15c0-2-1.5-3.5-3.5-3.5C9 14 10.5 15 12 15z"/></svg></div><h3>{{ s.proof4_title }}</h3><p>{{ s.proof4_body }}</p></div>{%- endif -%}
+      </div>
+    </div>
+  </section>
+  {%- endif -%}
+
+  <!-- 3 · MATERIALS (hidden when heading blank) -->
+  {%- if s.materials_heading != blank -%}
+  <section class="tnb-materials tnb-wrap">
+    <div class="tnb-head">
+      {%- if s.materials_kicker != blank -%}<div class="tnb-kicker" style="letter-spacing:.16em">{{ s.materials_kicker }}</div>{%- endif -%}
+      <h2>{{ s.materials_heading }}</h2>
+      {%- if s.materials_intro != blank -%}<p class="tnb-intro">{{ s.materials_intro }}</p>{%- endif -%}
+    </div>
+    <div class="tnb-fold">
+      <div class="tnb-fold-panel tnb-interior">
+        {%- if s.materials_p1_tag != blank -%}<div class="tnb-tag">{{ s.materials_p1_tag }}</div>{%- endif -%}
+        <h3>{{ s.materials_p1_title }}</h3>
+        <p>{{ s.materials_p1_body }}</p>
+      </div>
+      <div class="tnb-fold-panel tnb-covers">
+        {%- if s.materials_p2_tag != blank -%}<div class="tnb-tag">{{ s.materials_p2_tag }}</div>{%- endif -%}
+        <h3>{{ s.materials_p2_title }}</h3>
+        <p>{{ s.materials_p2_body }}</p>
+      </div>
+      <div class="tnb-fold-seam"></div>
+    </div>
+  </section>
+  {%- endif -%}
+
+  <!-- 5 · SIZES (hidden when heading blank) -->
+  {%- if s.sizes_heading != blank -%}
+  <section class="tnb-sizes tnb-wrap">
+    <div class="tnb-head">
+      {%- if s.sizes_kicker != blank -%}<div class="tnb-kicker" style="letter-spacing:.16em">{{ s.sizes_kicker }}</div>{%- endif -%}
+      <h2>{{ s.sizes_heading }}</h2>
+      {%- if s.sizes_intro != blank -%}<p class="tnb-intro">{{ s.sizes_intro }}</p>{%- endif -%}
+    </div>
+    <div class="tnb-size-grid">
+      {%- if s.size1_name != blank -%}<div class="tnb-size-card"><div class="tnb-dim">{{ s.size1_dim }}</div><h3>{{ s.size1_name }}</h3><p>{{ s.size1_body }}</p></div>{%- endif -%}
+      {%- if s.size2_name != blank -%}<div class="tnb-size-card"><div class="tnb-dim">{{ s.size2_dim }}</div><h3>{{ s.size2_name }}</h3><p>{{ s.size2_body }}</p></div>{%- endif -%}
+      {%- if s.size3_name != blank -%}<div class="tnb-size-card"><div class="tnb-dim">{{ s.size3_dim }}</div><h3>{{ s.size3_name }}</h3><p>{{ s.size3_body }}</p></div>{%- endif -%}
+    </div>
+  </section>
+  {%- endif -%}
+
+  <!-- COMPANIONS -->
+  {%- assign comp = s.companion_collection -%}
+  {%- if comp == blank -%}{%- assign comp = collections['pens-writing'] -%}{%- endif -%}
+  {%- if comp != blank and comp.products.size > 0 -%}
+  {%- assign comp_img = s.companion_image -%}
+  {%- if comp_img == blank -%}{%- assign comp_img = comp.products.first.featured_image -%}{%- endif -%}
+  <section class="tnb-companions">
+    <div class="tnb-companions-inner">
+      <div class="tnb-comp-img">
+        {%- if comp_img != blank -%}
+          <div class="tnb-imgfill"><img src="{{ comp_img | image_url: width: 900 }}" alt="{{ comp_img.alt | default: comp.title | escape }}"></div>
+        {%- else -%}<div class="tnb-ph"><span>pen &amp; ink beside an open notebook</span></div>{%- endif -%}
+      </div>
+      <div class="tnb-comp-body">
+        <div class="tnb-kicker" style="letter-spacing:.16em">{{ s.companion_kicker }}</div>
+        <h2>{{ s.companion_heading }}</h2>
+        <p class="tnb-comp-lead">{{ s.companion_lead }}</p>
+        <div class="tnb-comp-list">
+          {%- for product in comp.products limit: 3 -%}
+            <a class="tnb-comp-item" href="{{ product.url }}">
+              <span class="tnb-ci-index">0{{ forloop.index }}</span>
+              <span><span class="tnb-ci-name">{{ product.title }}</span>{%- if product.description != blank -%}<span class="tnb-ci-desc">{{ product.description | strip_html | truncatewords: 12 }}</span>{%- endif -%}</span>
+              <span class="tnb-ci-price">{{ product.price | money }}</span>
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+  {%- endif -%}
+
+  <!-- 6 · TRUST -->
+  <section class="tnb-trust">
+    <div class="tnb-trust-inner">
+      <div class="tnb-trust-fact"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>UK &amp; EU makers</span></div>
+      <div class="tnb-trust-fact"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 4v5h-5"/><path d="M12 8v4l3 2"/></svg><span>Traceable sourcing</span></div>
+      <div class="tnb-trust-fact"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22c5-3 7-7 7-11V5l-7-2-7 2v6c0 4 2 8 7 11z"/><path d="M12 12c0-3 2-5 4-5-1 3-2 4-4 5z"/><path d="M12 15c0-2-1.5-3.5-3.5-3.5C9 14 10.5 15 12 15z"/></svg><span>Carbon-neutral delivery</span></div>
+      <div class="tnb-trust-fact"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 3v6h6"/><path d="M8 14h8"/><path d="M8 17h5"/></svg><span>Recyclable &amp; compostable</span></div>
+    </div>
+    {%- if s.trust_award != blank -%}<p class="tnb-trust-award">{{ s.trust_award }}</p>{%- endif -%}
+  </section>
+
+  <!-- 7 · CLOSING -->
+  <section class="tnb-closing">
+    <p>{{ s.closing_text }}</p>
+    <div class="tnb-cta-row">
+      <a class="tnb-btn-dark" href="#tnb-collection">{{ s.closing_cta }}</a>
+      <a class="tnb-link-arrow tnb-navlink" href="{{ blogs.journal.url | default: routes.root_url }}">{{ s.closing_link }} <span>&rarr;</span></a>
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Notebooks collection",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image (defaults to collection/first product)" },
+    { "type": "text", "id": "hero_kicker", "label": "Kicker", "default": "The Notebook Collection" },
+    { "type": "text", "id": "hero_heading", "label": "Heading", "default": "Paper worth keeping a thought in" },
+    { "type": "textarea", "id": "hero_subcopy", "label": "Subcopy", "default": "Every Twinfold notebook is chosen against one standard — rescued materials, makers we can name, and built to be written in for years then returned to the earth once it’s full." },
+    { "type": "text", "id": "hero_btn1", "label": "Primary button", "default": "Shop the notebooks" },
+    { "type": "text", "id": "hero_btn2", "label": "Secondary button", "default": "Why they’re made this way" },
+    { "type": "header", "content": "Short story line" },
+    { "type": "text", "id": "story_kicker", "label": "Kicker", "default": "The short version" },
+    { "type": "textarea", "id": "story_text", "label": "Text", "default": "Rescued materials, makers we can name, and paper that takes ink and time equally well. We choose every notebook against one standard — then let the range speak for itself." },
+    { "type": "header", "content": "Collection grid" },
+    { "type": "text", "id": "grid_kicker", "label": "Kicker", "default": "In the collection" },
+    { "type": "text", "id": "grid_heading", "label": "Heading", "default": "Ways to start a page" },
+    { "type": "text", "id": "feature_badge", "label": "Feature card badge", "default": "Editor’s pick" },
+    { "type": "header", "content": "Standard band (blank Lead hides the band)" },
+    { "type": "text", "id": "standard_kicker", "label": "Kicker", "default": "What makes a Twinfold notebook" },
+    { "type": "textarea", "id": "standard_lead", "label": "Lead", "default": "We don’t stock notebooks. We choose them against one standard — where the paper comes from, who made it, and what happens to it after the last page." },
+    { "type": "text", "id": "proof1_title", "label": "Proof 1 title", "default": "Made close to home" },
+    { "type": "textarea", "id": "proof1_body", "label": "Proof 1 body", "default": "Wherever we can, they’re milled, bound and finished by small UK and European workshops — a family bindery in Dorset, paper milled in Cumbria. Short supply chains and named regions, not anonymous factories." },
+    { "type": "text", "id": "proof2_title", "label": "Proof 2 title", "default": "Rescued materials" },
+    { "type": "textarea", "id": "proof2_body", "label": "Proof 2 body", "default": "Pressed from waste that would otherwise be burned or buried — coffee cups, offcuts, spent grounds — given a second, more useful life." },
+    { "type": "text", "id": "proof3_title", "label": "Proof 3 title", "default": "Made to keep" },
+    { "type": "textarea", "id": "proof3_body", "label": "Proof 3 body", "default": "Sewn bindings that lie flat and hold, covers that soften rather than fray. A notebook you’ll refill a shelf with, not bin in January." },
+    { "type": "text", "id": "proof4_title", "label": "Proof 4 title", "default": "Kind at the end" },
+    { "type": "textarea", "id": "proof4_body", "label": "Proof 4 body", "default": "When it’s full, it composts or recycles cleanly. No plastic laminate, no mixed materials that can’t be parted." },
+    { "type": "header", "content": "Materials fold (blank Heading hides it)" },
+    { "type": "text", "id": "materials_kicker", "label": "Kicker", "default": "The signature" },
+    { "type": "text", "id": "materials_heading", "label": "Heading", "default": "Two rescued materials, one notebook" },
+    { "type": "textarea", "id": "materials_intro", "label": "Intro", "default": "Every notebook in the range is built from two waste streams that meet at the fold — one inside, one out." },
+    { "type": "text", "id": "materials_p1_tag", "label": "Panel 1 tag", "default": "Inside" },
+    { "type": "text", "id": "materials_p1_title", "label": "Panel 1 title", "default": "Recycled coffee-cup paper" },
+    { "type": "textarea", "id": "materials_p1_body", "label": "Panel 1 body", "default": "The thin lining that makes a takeaway cup waterproof also makes it near-impossible to recycle the usual way. We rescue it, strip it back, and press it into a smooth, forgiving writing paper that takes ink without bleeding." },
+    { "type": "text", "id": "materials_p2_tag", "label": "Panel 2 tag", "default": "Outside" },
+    { "type": "text", "id": "materials_p2_title", "label": "Panel 2 title", "default": "A second rescued stream" },
+    { "type": "textarea", "id": "materials_p2_body", "label": "Panel 2 body", "default": "The cover is pressed from a different waste depending on the range — repurposed food packaging, textile offcuts or spent brewing grain — so no two collections carry quite the same grain or colour." },
+    { "type": "header", "content": "Sizes / formats (blank Heading hides it)" },
+    { "type": "text", "id": "sizes_kicker", "label": "Kicker", "default": "Choosing a size" },
+    { "type": "text", "id": "sizes_heading", "label": "Heading", "default": "Three formats, three kinds of thinking" },
+    { "type": "textarea", "id": "sizes_intro", "label": "Intro", "default": "Not sure where to start? Match the notebook to how you’ll actually use it." },
+    { "type": "text", "id": "size1_dim", "label": "Card 1 dimension", "default": "A7 · Pocket" },
+    { "type": "text", "id": "size1_name", "label": "Card 1 name", "default": "The Shot" },
+    { "type": "textarea", "id": "size1_body", "label": "Card 1 body", "default": "Lists, overheard lines, the thing you’ll forget by lunch. Slips into a coat pocket and goes everywhere with you." },
+    { "type": "text", "id": "size2_dim", "label": "Card 2 dimension", "default": "A5 · Everyday" },
+    { "type": "text", "id": "size2_name", "label": "Card 2 name", "default": "The Stitched" },
+    { "type": "textarea", "id": "size2_body", "label": "Card 2 body", "default": "The all-rounder. Meetings, journalling, a day’s worth of thinking held in one sewn, hard-wearing book." },
+    { "type": "text", "id": "size3_dim", "label": "Card 3 dimension", "default": "A5 · 160 pages" },
+    { "type": "text", "id": "size3_name", "label": "Card 3 name", "default": "The Layflat" },
+    { "type": "textarea", "id": "size3_body", "label": "Card 3 body", "default": "Room to sketch and spread out. Opens completely flat for two-page work that never fights the spine." },
+    { "type": "header", "content": "Companions" },
+    { "type": "collection", "id": "companion_collection", "label": "Companion collection (defaults to Pens & Writing)" },
+    { "type": "image_picker", "id": "companion_image", "label": "Companion image (defaults to first product)" },
+    { "type": "text", "id": "companion_kicker", "label": "Kicker", "default": "The other half of the desk" },
+    { "type": "text", "id": "companion_heading", "label": "Heading", "default": "What goes with a notebook" },
+    { "type": "textarea", "id": "companion_lead", "label": "Lead", "default": "A blank page asks for something to fill it. A small, considered set of writing tools — kept and refilled, never replaced." },
+    { "type": "header", "content": "Trust & closing" },
+    { "type": "textarea", "id": "trust_award", "label": "Award line", "default": "Our recycled coffee-cup notecards were recognised in the 2025 Design Guild Marks for sustainable stationery." },
+    { "type": "textarea", "id": "closing_text", "label": "Closing line", "default": "Buy one notebook — or the habit of keeping better ones." },
+    { "type": "text", "id": "closing_cta", "label": "Closing button", "default": "Shop the collection" },
+    { "type": "text", "id": "closing_link", "label": "Closing link text", "default": "Read the making story in the Journal" }
+  ],
+  "presets": [ { "name": "Notebooks collection" } ]
+}
+{% endschema %}

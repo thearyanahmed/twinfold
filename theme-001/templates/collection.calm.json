@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "col": {
+      "type": "notebooks-collection",
+      "settings": {
+        "hero_kicker": "The Calm Corner",
+        "hero_heading": "Where you sit matters",
+        "hero_subcopy": "A desk by the window, a little green nearby, candlelight to close the day. The small things that make a room worth thinking in.",
+        "hero_btn1": "Shop the Calm Corner",
+        "hero_btn2": "Read the Journal",
+        "story_text": "Planters, candle holders and quiet objects for the corner you actually live in. Chosen for how they feel, not how they photograph.",
+        "grid_heading": "For the corner",
+        "standard_kicker": "What makes the corner",
+        "standard_lead": "Not a catalogue of homeware. A few considered pieces for the calm corner — natural materials, made to keep, quietly beautiful.",
+        "proof1_title": "Natural materials",
+        "proof1_body": "Stoneware, ceramic, seagrass and wood — honest materials that age well and feel good in the hand.",
+        "proof2_title": "Made by hand",
+        "proof2_body": "Small-workshop pieces with the marks of a maker, not a machine line.",
+        "proof3_title": "Made to keep",
+        "proof3_body": "Objects that soften and improve with time — kept for years, not swapped each season.",
+        "proof4_title": "Quietly done",
+        "proof4_body": "Calm forms and muted tones that let a room breathe.",
+        "materials_heading": "",
+        "sizes_heading": "",
+        "companion_collection": "brew-and-sip",
+        "companion_kicker": "The other half of the pause",
+        "companion_heading": "Something to sip",
+        "companion_lead": "A calm corner asks for a slow cup. Coffee and tea to fill the quiet.",
+        "trust_award": "",
+        "closing_text": "Make a corner worth returning to.",
+        "closing_cta": "Shop the Calm Corner",
+        "closing_link": "Read the Journal"
+      }
+    }
+  },
+  "order": ["col"]
+}

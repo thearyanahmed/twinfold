@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "col": {
+      "type": "notebooks-collection",
+      "settings": {
+        "hero_kicker": "Brew & Sip",
+        "hero_heading": "The slow cup",
+        "hero_subcopy": "Coffee and tea for the ten unhurried minutes that are only yours — considered blends and the quiet tools to brew them.",
+        "hero_btn1": "Shop Brew & Sip",
+        "hero_btn2": "Read the Journal",
+        "story_text": "Good coffee, loose-leaf tea, and glassware to slow down with. A small edit — the things worth reaching for, nothing else.",
+        "grid_heading": "The morning ritual",
+        "standard_kicker": "What we pour",
+        "standard_lead": "We don’t stock a supermarket aisle. A few blends and brewing tools chosen for how they taste and how they’re made.",
+        "proof1_title": "Small-batch makers",
+        "proof1_body": "Roasters and growers we can name — coffee and tea from people who care how it’s grown and roasted.",
+        "proof2_title": "Better for the grower",
+        "proof2_body": "Ethically sourced, fairly traded, and chosen for quality over volume.",
+        "proof3_title": "Made to slow you down",
+        "proof3_body": "Loose-leaf, whole-bean, and glassware built for a ritual — not a rushed refuel.",
+        "proof4_title": "Less waste in the cup",
+        "proof4_body": "Recyclable packaging and refillable tools, so the ritual doesn’t cost the earth.",
+        "materials_heading": "",
+        "sizes_heading": "",
+        "companion_collection": "the-calm-corner",
+        "companion_kicker": "Set the scene",
+        "companion_heading": "For the quiet corner",
+        "companion_lead": "A candle lit, a plant nearby — the small things that turn a coffee into a pause.",
+        "trust_award": "",
+        "closing_text": "Make the cup a ritual, not a refuel.",
+        "closing_cta": "Shop Brew & Sip",
+        "closing_link": "Read the Journal"
+      }
+    }
+  },
+  "order": ["col"]
+}

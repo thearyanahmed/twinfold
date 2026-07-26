@@ -1,4 +1,6 @@
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600&display=swap" rel="stylesheet">
 
 {% liquid
   assign block_settings = block.settings
@@ -137,6 +139,16 @@
 
   .header-logo__image-container--inverse {
     display: var(--header-logo-inverse-display, none);
+  }
+
+  /* Twinfold wordmark spec — applies to the text logo; ignored when a logo image is set */
+  .header-logo:not(:has(.header-logo__image)) {
+    font-family: 'Hanken Grotesk', system-ui, sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 22px !important;
+    letter-spacing: -0.01em !important;
+    text-transform: lowercase !important;
+    color: oklch(0.24 0.01 260) !important;
   }
 {% endstylesheet %}
 
